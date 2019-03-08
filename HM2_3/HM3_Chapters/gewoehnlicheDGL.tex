@@ -1,0 +1,504 @@
+
+\section{Existenz und Eindeutigkeit}
+\subsection{Stetigkeit}
+%\todo[inline]{Def. Stetigkeit}
+\subsection{Gleichmäßige Stetigkeit}
+%\todo[inline]{Def glm Stetigkeit}
+\subsection{Lipschitz-Stetig}
+\label{subsec:l-stetig}
+%\todo[inline]{Def Lipschitz Stetigkeit; aber nicht unbedingt notwendig!}
+\subsection{Lipschitz-Bedingung}
+%\todo{überprüfen}
+
+ $f:D \subseteq \mathbb{R}^2 \to \mathbb{R} \ \text{global Lipschitz-Stetig} \\
+ \iff \exists L>0 \ : \ |f(x,y)-f(x,y_0)| \leq  L \ |y-y_0| \quad \forall \ (x,y)^T,(x,y_0)^T \in D$ \
+ Vorgehen:
+ \begin{itemize}
+     \item $|f(x,y)-f(x,y_0)| \ \overset{MWS}= \ \frac{\partial f}{\partial y} \cdot |y-y_0| \leq \sup\limits_{D} \frac{\partial f}{\partial y} \ |y-y_0| \stackrel{!}{\leq} L\ |y-y_0| $
+ \end{itemize}
+
+\subsection{Existenz- und Eindeutigkeitssatz von Picard-Lindelöf}
+ Seien ${s,r,\xi,\eta \in \mathbb{R}}$ und $r,s > 0$ und ${\varphi(x,y):M \to \mathbb{R}}$ mit ${M:= [ \xi,\xi +r] \ \times [\eta-s,\eta+s]}$ außerdem erfülle $\varphi(x,y)$ die Lipschitz-Bedingung, dann besitzt das AWP ${y'=\varphi(x,y)}$ mit $y(\xi)=\eta$ eine eindeutige Lösung, wenn gilt: \\
+ \begin{align*}
+     |\varphi(x,y)|\leq \frac{s}{r}
+ \end{align*}
+ Vorgehen:
+ \begin{itemize}
+     \item $|\varphi(x,y)|$ durch Einsetzen der Grenzen sinnvoll abschätzen
+     \item Gleichung auf $r<\dots$ umstellen um Lösungsintervall zu bestimmen
+ \end{itemize}
+Bemerkungen:
+\begin{enumerate}
+    \item Ohne Lipschitz-Bedingung lässt sich trotzdem eine Aussage über das Lösungsintervall treffen, dass die Existenz \textit{mindestens} einer Lösung garantiert. (siehe Satz von Peano)
+    \item Der Satz gilt nur in einer Richtung!\\ D.h  \textit{erfüllt Lipschitz-Bedingung nicht} $\centernot\implies$  \textit{besitzt keine eindeutige Lösung}
+    \item Beachten, dass das gefundene Intervall größer als die Definitionsmenge in der Aufgabenstellung sein kann. Dann setzt sich das Lösungsintervall aus der Schnittmenge der Beiden zusammen.
+\end{enumerate}
+
+
+\subsection{Picarditeration}
+
+Quelle: \url{https://de.wikipedia.org/wiki/Picarditeration}\\
+AWP:
+\begin{equation*}
+    y'(x) = f(x, y(x)), y(x_0) = y_0
+\end{equation*}
+
+$f(x, y)$ \hyperref[subsec:l-stetig]{Lipschitz stetig} in $y$. Picard Iteration:
+\begin{align*}
+    y^{[0]}(x) &= y_0\\
+    y^{[l+1]}(x) &= y_0 + \int_{x_0}^x f(s,y^{[l]}(s)) \diff s, x \in [x_0, x_0 + \varepsilon]
+\end{align*}
+Konvergiert für hinreichend kleine $\varepsilon > 0$ gleichmäßig gegen Lösung der DGL.
+
+
+\section{Differentialgleichungen erster Ordnung}
+
+\subsection{Lineare DGL erster Ordnung}
+Es ist $I\subset\mathbb{R}$ ein Intervall und $\chi\in\mathbb{R}$ ein Punkt in $I$, welcher nicht auf dem Rand liegt. Es sind $f,g$ stetige Funktionen
+\begin{equation*}
+    y_0:I\to\mathbb{R} \quad y_0(x)=\exp\left(\int_\chi^xf(t)\diff t\right)
+\end{equation*}
+\begin{equation*}
+    y_1:I\to\mathbb{R} \quad y_1(x)=y_0(x)\cdot\left(\eta+\int_\chi^x\frac{g(t)}{y_0(t)}\diff t\right)
+\end{equation*}
+dann ist
+\begin{enumerate}
+    \item $y_0$ ist Lösung von $y'=f(x)y$
+    \item $y_1$ ist Lösung von $y'=f(x)y+g(x)$ mit $y(\chi)=\eta$
+\end{enumerate}
+\paragraph{Bemerkung:}
+\begin{enumerate}
+    \item Jede Linearkombination der Lösungen ist im Allgemeinen wieder eine Lösung des homogenen Problems
+    \item Eindeutigkeit muss im Falle des inhomogenen AWP's mit Picard-Lindelöf gezeigt werden
+\end{enumerate}
+
+\subsection{Bernoullische DGL}
+\textbf{Form:} $y' = f(x)\cdot y + g(x)\cdot y^{\alpha}$ (für $\alpha \in \{0, 
+1\}$ ergibt sich lineare DGL)\\
+\textbf{Lösung:} 
+\begin{enumerate}
+    \item definiere $z(x) = (y(x))^{1-\alpha}$
+    \item es ergibt sich $z' = (1-\alpha)f(x)z(x) + (1-\alpha)g(x)$ (lineare DGL)
+    \item $y(x) = z(x)^{\frac{1}{1-\alpha}}$
+\end{enumerate}
+
+\subsection{Riccatische DGL}
+\textbf{Form:} $y' = f(x)\cdot y^2 + g(x) \cdot y + h(x)$\\
+\textbf{Lösung:} Es existiert kein allgemeiner Lösungsansatz.\\
+Ist Lösung $y_1$ bekannt, so ergibt sich für $z = y_2 - y_1$:\\
+$z' = f(x)\cdot z^2 + (g(x) + 2f(x)y_1(x))\cdot z$ (Bernoulli DGL).\\
+Ist z gefunden, ist $y_2(x) = z(x) + y_1(x)$ ebenfalls Lösung.
+
+\subsection{DGL mit getrennten Veränderlichen}
+Es ist eine DGL der Form $y'=g(x)h(y)$ gegeben, dann erhält man durch Substitution die Form
+\begin{equation*}
+    \int \frac{\diff y}{h(y)} = \int g(x) \diff x
+\end{equation*}
+welche nach y aufgelöst werden kann. Es ist zu beachten, ob $h(y)\neq0$ gilt, andernfalls müssen diese Punkte nochmals gesondert betrachtet werden.\\
+
+\textbf{Lösung:} Ist $y$ Lösung der Riccati-DGL
+
+%\todo[inline]{verschiedene DGL Typen}
+
+\subsection{Homogene DGL}
+\textbf{Form:} $y' = f\big( \frac{y}{x} \big)$\\
+\textbf{Lösung:} Substitution $z = \frac{y}{x}$ bzw. $y = z\cdot x$ führt zu\\
+$f(z) = y' = z + x\cdot z' \Rightarrow z' = \frac{f(z) - z}{x}$ (getrennte 
+Veränderliche)
+
+\subsection{Verallgemeinerte homogene DGL}
+\textbf{Form:} $a^2 + b^2 + c^2 > 0 \ \land \ \alpha^2 + \beta^2 + \gamma^2 > 0$
+    \begin{equation*}
+        y' = f \bigg( \frac{ax + by +c}{\alpha x + \beta y + \gamma} \bigg)
+    \end{equation*}
+\textbf{Lösung:}
+    \begin{enumerate}
+        \item[1. Fall:] $\alpha = \beta = 0$ (dann o.B.d.A $\gamma = 1$)
+            \begin{enumerate}
+                \item[$b = 0$:] Falls $b = 0$ ergibt sich $y' = f(ax + c)$. Es muss
+                    Stammfunktion von $f$ gefunden werden.
+                \item[$b \neq 0$:] Falls $b \neq 0$ ergibt sich 
+                    $y' = f(ax + by +  c)$
+                    $y$ löst, wenn $z(x) = ax + by(x) + c$ die DGL 
+                    $z' = a + bf(z)$ löst (getrennte Veränderliche).
+                    Dann $y(x) = \frac{z(x) - ax - c}{b}$.
+            \end{enumerate}
+            
+        
+        \item[2. Fall:] $\alpha^2 + \beta^2 > 0$
+            \begin{enumerate}
+                \item[$\begin{vmatrix} a & b \\ \alpha & \beta\end{vmatrix} = 0$:]
+                    Es existiert also $\lambda \in \mathbb{R}$ mit 
+                    $\colvec{2}{a}{b} = \lambda\cdot\colvec{2}{\alpha}{\beta}$.
+                    Somit ergibt sich\\ 
+                    $ y' = f \Big( \lambda + \frac{c - \lambda\gamma}{\alpha x + \beta y + \gamma}\Big)$ (1. Fall $b \neq 0$ mit veränderter Funktion $\widetilde{f}$).
+                \item[$\begin{vmatrix} a & b \\ \alpha & \beta\end{vmatrix} \neq 0$:]
+                    Es existieren eindeutige $x_0, y_0 \in \mathbb{R}$ mit 
+                    $ax_0 + by_0 + c = 0 \ \land \ \alpha x_0 + \beta y_0 + \gamma = 0$
+                    (LGS lösen). Das führt auf 
+                     $ y' = f \Big(\frac{a(x-x_0) + b(y-y_0)}{\alpha (x-x_0) + \beta 
+                     (y-y_0)}\Big)$. Mit $z(x) = y(x+x_0) - y_0$ erhält man 
+                     $z'(x) = f\Big(\frac{ax + bz}{\alpha x + \beta z}\Big) = 
+                     f\Big(\frac{a + b\frac{z}{x}}{\alpha + \beta \frac{z}{x}}\Big)$
+                     (homogene DGL).
+                    
+            \end{enumerate}
+
+    \end{enumerate}
+    
+\subsection{Die exakte Differentialgleichung}
+Sei $D:=(a,b)\times(\alpha,\beta) \subseteq \mathbb{R}^2$ und $f,g \in C(D)$.\\
+Die gewöhnliche Differenzialgleichung
+\begin{equation}\label{subsec: Die exakte Differentialgleichung}
+    f(x,y)+y'\cdot g(x,y) \ = \ 0
+\end{equation}
+heißt exakt, wenn das Vektorfeld $\colvec{2}{f}{g}$ eine Stammfunktion $F(x,y(x))$ besitzt.\\
+$y$ mit $\smallcolvec{x\\y(x)} \in D$ löst die DGL, wenn $F(x,y(x)) \overset{!}=c$ mit der Konstanten $c\in \mathbb{R}$.
+
+\newlinepar{Vorgehen:}
+\begin{enumerate}
+    \item Integrabilitätsbedingung prüfen
+    \item Stammfunktion berechnen
+    \item $F(x,y(x))=c$ auf $y(x)$ umstellen, wobei eine \textit{explizite} Darstellung nicht immer möglich ist
+    \item ggf. Konstante $c$ über AWP bestimmen
+\end{enumerate}
+
+\subsubsection{Eulerscher Multiplikator oder integrierender Faktor}
+Sei eine gewöhnliche Differentialgleichung wie in \ref{subsec: Die exakte Differentialgleichung} gegeben, die aber nicht die Integrabilitätsbedingung erfüllt. Dann lässt sich ggf. eine Funktion $\mu(x,y)$ mit $\mu \subset C(D) $ und $\mu(x,y)\neq 0$ finden, sodass 
+\begin{align*}
+    \mu(x,y)f(x,y)+y'\cdot \mu(x,y)g(x,y) \ = \ 0
+\end{align*}
+eine exakte Differentialgleichung ist, die die Integrabilitätsbedingung erfüllt.
+
+\paragraph{Bemerkung:} Es gibt vier Fälle, für die der Integrierende Faktor einfach bestimmt werden kann: \textit{Die Herleitung folgt mit einfachen Umformungen aus der Integrabilitätsbedingung $\frac{\partial \mu f}{\partial y} = \frac{\partial \mu g}{\partial x}$.}
+\begin{enumerate}[label=\roman*)]
+    \item $\mu(x)$ hängt nur von $x$ ab:
+        \begin{align*}
+            &\iff \mu_y f + \mu f_y = \mu_x g + \mu g_x \\
+            &\iff \mu (f_y-g_x) = \mu_x g \\
+            &\iff \frac{\mu_x}{\mu} = \frac{f_y-g_x}{g}\\
+            &\Rightarrow \mu(x) = \exp{\left(\int \frac{f_y-g_x}{g} \diff x \right)} 
+        \end{align*}
+    
+    \item $\mu(y)$ hängt nur von $y$ ab:
+        \textit{analog zu $x$}
+        \begin{align*}
+            \Rightarrow \mu(y) = \exp \left (\int \frac{g_x-f_y}{f} \diff y \right)
+        \end{align*}
+    
+    \item $\mu(x+y)$ hängt nur von $x+y$ ab:
+        \begin{align*}
+            f\mu_y - g\mu_x &= (f-g)\cdot\mu' = (g_x-f_y)\mu \\
+            \iff \mu(x+y) &= \exp \left( \int^{x+y} \frac{g_x-f_y}{f-g}(t) \diff t \right)
+        \end{align*}
+        
+    \item $\mu(xy)$ hängt nur von $xy$ ab:
+        \begin{align*}
+            f\mu_y-g\mu_x &= (xf-yg)\cdot\mu' = (g_x-f_y)\mu \\
+            \Rightarrow \mu(xy) &= \exp \left( \int^{xy} \frac{g_x-f_y}{xf-yg}(t) \diff t \right)
+        \end{align*}
+    
+\end{enumerate}
+
+Für das Finden des richtigen Eulerschen Multiplikators gibt es keine Regel.
+Der Ausdruck im Integral der obigen Beispiele darf aber je nach Fall nur von $x,\ y,\ x+y,\ xy$ abhängig sein. \\
+Der Euler Multiplikator schränkt das Lösungsintervall nicht ein.
+
+\subsection{Die Clairautsche Differentialgleichung}
+Die gewöhnliche Differentialgleichung 
+\begin{align*}
+    y(x) = x\cdot y'(x) - f(y'(x))
+\end{align*}
+heißt Clairautsche Differentialgleichung und wird trivialerweise durch
+\begin{align*}
+    y(x) = cx - f(c)  
+\end{align*}
+mit $c \in \mathbb{R}$ gelöst.
+
+
+
+\section{DGL Systeme}
+\subsection{Lineare Differentialgleichungssysteme 1. Ordnung}
+
+\begin{align*}
+    \begin{pmatrix}
+        y_1'\\
+        \vdots\\
+        y_n'
+    \end{pmatrix}=
+    \begin{pmatrix}
+    a_{11} && \dots && a_{1n} \\
+    \vdots && \ddots && \vdots \\
+    a_{n1} && \dots && a_{nn}
+    \end{pmatrix}
+    \begin{pmatrix}
+        y_1\\
+        \vdots\\
+        y_n
+    \end{pmatrix}+
+    \begin{pmatrix}
+    b_1\\
+    \vdots\\
+    b_n
+    \end{pmatrix}
+\end{align*}
+Ist ein lineares Differentialgleichungssystem erster Ordnung:
+\begin{align*}
+    y'= Ay+b(x)
+\end{align*}
+mit $A \in \mathbb{R}^{n\times n}$ mit konstanten Koeffizienten, diagonalisierbar und $b \in \mathbb{R}^{n}$.\\
+Das homogene System wird von einer sogenannten \emph{Fundamentalmatrix} $Y(x) \in \mathbb{R}^{n\times n}$ gelöst, mit den Spaltenvektoren $y_j(x) \in \mathbb{R}^n$.\\
+$y_j(x) = e^{\lambda_j x}\cdot \vec{s_j}$, wobei $\lambda_j$ die Eigenwerte von $A$ und $s_j$ die zugehörigen Eigenvektoren sind.
+
+\subsection{Wronski Determinante}
+\label{subsec:wronski-det}
+Für Funktionen $y_1, \dots y_n \in C^{0}_n(I)$ heißt 
+\begin{align*}
+    W:I\rightarrow \mathbb{R}, W(x):= \vert y_1(x) \dots y_j(x) \vert
+\end{align*}
+die zugehörige Wronski-Determinante.
+
+\paragraph{Dgl der Wronski Determinanten}
+Sind $y_1, \dots, y_n$ ein Fundamentalsystem von $y^\prime = A(x)y$ und $W$ deren Wronski Determinante, dann gilt:
+\begin{align*}
+    W^\prime(x) &= \text{spur}(A) W(x)
+    \iff \frac{W^\prime(x)}{W(x)} = \text{spur}(A) \\
+    \iff W(x) &= \exp \left( \int^x \text{spur}(A(t)) \diff t \right) \\
+    \Rightarrow W(x) &= W(\xi) \exp \left( \int_\xi^x \text{spur}(A(t)) \diff t \right )
+     \text{\quad} \forall x,\xi \in I 
+\end{align*}
+
+\subsection{Partikuläre Lösung}
+Sind $y_1, \dots, y_n$ ein Fundamentalsystem von $y^\prime = A(x)y$ mit Wronski-Determinante W und für $\nu = 1,\dots,n$ 
+\begin{align*}
+    W_{\nu}(x) = \det{\left(y_1(x),\dots,y_{\nu-1}(x),b(x),y_{\nu+1}(x),\dots,y_n(x)\right)}
+\end{align*}
+Dann wird das DGL-System gelöst durch
+\begin{align*}
+    \\
+     y_p:I\rightarrow\mathbb{R},\quad y_p(x) = \sum\limits_{\nu=1}^{n} y_{\nu} \int^x \frac{W_{\nu}(t)}{W(t)} \diff t
+\end{align*}
+\newlinepar{Bemerkung}
+Ist ein Anfangswertproblem der Form $y(\xi) = \eta$ gegeben, dann ist die Lösungsgesamtheit gegeben durch 
+\begin{align*}
+    y(x) = Y(x)
+    \begin{pmatrix}
+    c_1\\
+    \vdots \\
+    c_n
+    \end{pmatrix}
+    + y_p(x)
+\end{align*}
+Wobei $Y(x)$ das Fundamentalsystem ist und die Konstanten $c_1,\dots, c_n$ durch einsetzen des AWPs bestimmt werden können. Es ist also nicht notwendig, das AWP beim Bestimmen der partikulären Lösung zu berücksichtigen, da die Konstanten zusammengefasst werden können. 
+
+\newlinepar{Substitution um eine Matrix mit konstanten Koeffizienten zu erhalten}
+Beispiel aus dem Tutorium: \\
+$\dot{u}=\frac{1}{t}\left(\begin{smallmatrix}1 & 3 \\ 1 & -1 \end{smallmatrix}\right)\cdot u$. Hier kann $t=e^x$ subst. werden. Dann erhält man
+\begin{equation*}
+    e^x\frac{\diff u}{\diff x}\cdot\frac{1}{\frac{\diff t}{\diff x}}=\frac{\diff u}{\diff x}=\begin{pmatrix}
+        1 & 3\\
+        1 & -1\\
+    \end{pmatrix}\cdot u(e^x)
+\end{equation*}
+Damit hat man nun eine System mit konstanten Koeffizienten, welches wie bekannt durch Diagonalisieren der Matrix bestimmt werden kann.
+
+
+
+\subsection{Matrixexponentialfunktion}
+\subsubsection{Definition}
+$A \in \mathbb{C}^{n\times n}$
+\begin{equation}
+    \label{eq:matrixexp}
+    e^A = \sum_{k=0}^\infty \frac{1}{k!} A^k
+\end{equation}
+
+\subsubsection{Eigenschaften}
+\begin{align*}
+    A^0 &= I \; \text{(Einheitsmatrix)}\\
+    e^{D_\lambda} &= \text{\glqq} D(e^\lambda) \text{\grqq} \; \text{(Diagonalmatrix: Potenzieren der Diagonalelemente)} \\
+    e^A \cdot e^B &= e^{A+B} \; \text{, falls } AB=BA\\
+    \left (e^A \right )^{-1} &= e^{-A}\\
+    e^{xA} &= \sum_{k=0}^\infty \frac{x^k}{k!} A^k\\
+    D= S^{-1}AS & \implies e^A = S e^D S^{-1}\\
+    y' = Ay & \implies e^{xA} \text{ ist Fundamentalmatrix}\\
+     y' = Ay, y(\xi) = \eta & \implies y(x) = e^{(x-\xi)A}\cdot \eta 
+     \text{ ist eindeutige Lösung}
+\end{align*}
+
+\subsection{Algorithmus von Putzer}
+Ist die Matrix $A$ nicht diagonalisierbar, kann eine Darstellung der Matrixexponentialfunktion mit dem Algorithmus von Putzer gefunden werden.\\
+Es ist $A\in\mathbb{R}^{nxn}$ eine Matrix mit den Eigenwerten $\lambda_1,\dots,\lambda_n$. Dann ist die Matrix $B$ definiert als
+\begin{align*}
+    B_1 &= I_n\\
+    B_j&=\prod_{\nu=1}^{j-1}(A-\lambda_\nu\operatorname{I}_n) \text{ für } j=2,\dots,n
+\end{align*}
+
+sowie die Funktionen $v_j:\mathbb{R}\to\mathbb{C}$, mit $j=1,\dots,n$
+
+\begin{align*}
+    v_1(x)&=e^{\lambda_1x}\\
+    v_j'(x)&= \lambda_j v_j(x)+v_{j-1}(x) \text{ mit } v_j(0)=0 \text{ für }j=2,\dots,n\\
+    v_j &= e^{\lambda_jx}\cdot \int^{x}_0 e^{-\lambda_jt}v_{j-1}(t)\diff t
+\end{align*}
+Dann ist dadurch eine rekursive Vorschrift zur Berechnung gegeben. Die Matrixexponentialfunktion kann dann dargestellt werden durch
+\begin{equation*}
+    e^{xA}=\sum_{j=1}^n v_j(x) B_j
+\end{equation*}
+
+\subsection{Lineare Differentialgleichungen Höherer Ordnung und DGL Systeme}
+% in progress -ottojo
+Lineare DGL höherer Ordnung \eqref{eq:lin_dgl_ordn_n} lassen sich in ein DGL System \eqref{eq:lin_dgl_ordn_n_system} umschreiben:
+
+\begin{equation}
+    \label{eq:lin_dgl_ordn_n}
+    y^{(n)}+\sum_{k=0}^{n-1} a_k(x)y^{(k)}=0
+\end{equation}
+
+\begin{equation}
+\label{eq:lin_dgl_ordn_n_system}
+\vecderiv{y} = 
+\begin{pmatrix}
+0 & 1 & 0 & \cdots & 0 \\
+0 & 0 & 1 & \ddots & \vdots \\
+\vdots & \vdots & \ddots & \ddots & 0 \\
+0 & \cdots & \cdots & 0 & 1 \\
+-a_0(x) & -a_1(x) & -a_2(x) & \cdots & -a_{n-1}(x)
+\end{pmatrix}
+\vec{y}
+\end{equation}
+
+\newlinepar{Beispiel (21 a)}
+\begin{equation*}
+    y''-3y'+2y=0, y(0)=0, y'(0)=1
+\end{equation*}
+Umgeformt in DGL System:
+\begin{equation*}
+    \vecderiv{y}=
+    \begin{pmatrix}
+    0  & 1 \\
+    -2 & 3
+    \end{pmatrix}
+    \vec{y}
+\end{equation*}
+Mit Eigenwerten $\lambda_1=1, \lambda_2=2$ und dazugehörigen Eigenvektoren $s_1=\smallcolvec{1\\1}$ und $s_2=\smallcolvec{1\\2}$.
+Daraus folgt die Lösung $y=ae^x+be^{2x}$ mit den Konstanten $a,b \in \mathbb{R}$, die durch das AWP zu $a=-1, b=1$ bestimmt werden. Die Lösung lautet also $y=e^{2x}-e^x$.
+
+
+\subsection{Lineare DGL mit konstanten Koeffizienten höherer Ordnung}
+Es ist eine DGL der Form $g(x)=\sum_{k=0}^na_ky^{(k)}$ gegeben. Dann kann die homogene Gleichung über den Ansatz $y(x)=e^{\lambda x}$ gelöst werden. Es ist zu beachten, dass komplexe $\lambda$ auftauchen können und die Lösung dann reell dargestellt werden muss.\\
+Abhängig von g(x) können verschiedene Ansätze für die rechte Seite gewählt werden.
+
+\begin{table}[h]
+    \centering
+    \caption{Ansätze der rechten Seite}
+    \begin{tabular}{c|c}
+        \textbf{Inhomogenität} & \textbf{Ansatz}  \\
+        \hline
+         $g(x)=\sin{\omega x}$ oder $g(x)=\cos{\omega x}$   & $y_p(x)=A\sin{\omega x} + B\cos{\omega x}$\\
+         $g(x)=e^{cx}\cdot\sin{\omega x}$ oder $g(x)=e^{cx}\cdot\cos{\omega x}$     & $y_p(x)=e^{cx}(A\sin{\omega x} + B\cos{\omega x})$\\
+         $g(x)=e^{i\omega x}$       & $y_p(x)=Ae^{i(\omega x - \Psi)}$\\
+         $g(x)=e^{cx}\cdot e^{i\omega x}$       & $y_p(x)=Ae^{cx}e^{i(\omega x -\psi)}$\\
+         
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
+
+\newlinepar{Bemerkung:}
+Es muss beachtet werden, wenn ein Teil des Ansatzes bereits Lösung der Gleichung ist und damit in der homogenen Lösung enthalten ist, muss der Ansatz jeweils mit $x^\nu$ erweitert werden, wobei $\nu$ die Häufigkeit der Lösung, bzw. der Nullstelle im char. Polynom ist.\\
+Außerdem können alle Ansätze jeweils noch um ein Polynom erweitert werden, bspw. $g(x)=\cos{\omega x}(A_0+A_1x+A_2x^2+\dots)$ kann der Ansatz\\ $y_p(x)=\cos{\omega x}(B_0+B_1x+B_2x^2+\dots)+\sin{\omega x}(C_0+C_1x+C_2x^2+\dots)$ gewählt werden
+
+\subsection{Stabilität}
+\subsubsection{Differentialgleichung erster Ordnung}
+Die inhomogene Differentialgleichung erster Ordnung $y'= f(x)y+g(x)$ ist asymptotisch stabil.\\
+$$\iff \lim_{x\rightarrow \infty} \int^{x}_0 f(t) \diff t = -\infty$$
+\subsubsection{Differentialgleichung höherer Ordnung mit konstanten Koeffizienten}
+Sei $A \in \mathbb{R}^{n\times n}$ die Koeffizientenmatrix einer linearen DGL höherer Ordnung mit Eigenwerten $\lambda_1,\dots, \lambda_n \in \mathbb{C}$ und $\gamma = \max_{1\leq k\leq n}(\text{Re}(\lambda_k))$, dann gilt für die Nulllösung $y_0=0$ von $y'=Ay$
+\begin{enumerate}[label=\roman*)]
+    \item \emph{asymptotisch stabil}, wenn $\gamma < 0$. Dann ist jede Lösung $y_0$ von $y'=Ay + b$ asymptotisch stabil
+    \item \emph{instabil}, wenn $\gamma > 0$
+    \item \emph{stabil}, wenn $\gamma = 0$ und bei allen Eigenwerten $\lambda_k$ für die gilt $Re(\lambda_k)=0$, algebraische und geometrische Vielfachheiten übereinstimmen. Ansonsten \emph{instabil}.
+\end{enumerate}
+
+\paragraph{Bemerkung}
+Eine \textit{inhomogene} Differentialgleichung höherer Ordnung ist genau dann asymptotisch stabil, wenn die Nulllösung der homogenen Differentialgleichung asymptotisch stabil ist.
+
+\subsubsection{Alternative Bestimmung der Stabilität}
+Auf Blatt8 wurden folgende Aussagen bewiesen:\\
+Sei $A \in \mathbb{R}^{n\times n}$ die Koeffizienten-Matrix eines autonomen Systems mit konstanten Koeffizienten, dann gilt für die Nulllösung $y_0$:
+\begin{enumerate}[label=\roman*)]
+    \item $\det(A) > 0 \wedge \text{Spur}(A) < 0 \Rightarrow$ \emph{asymptotisch stabil}
+    \item $\det(A) < 0 \lor \text{Spur}(A) > 0 \ \Rightarrow$ \emph{instabil}
+    \item $\det(A) = 0 \wedge \text{Spur}(A) < 0 \ $ und für alle Eigenwerte $\lambda=0$ \textit{algebraische} und \textit{geometrische} Vielfachheit übereinstimmen \\ $\Rightarrow$ \emph{stabil}
+    
+\end{enumerate}
+
+\subsubsection{Satz von Hartman-Grobman oder Linearisierungssatz}
+Das Verhalten eines autonomen Systems (\textit{wichtig für nicht lineare 
+Systeme}) gleicht in der Umgebung eines hyperbolischen Fixpunktes (hier 
+wurden bisher jedoch immer nur kritische Punkte betrachtet) dem 
+linearisierten System ($y' = \text{J}\cdot y$, wobei J die Jacobimatrix von 
+$\varphi(y)$ ist) in dieser Umgebung.
+
+\paragraph{Def}hyperbolischer Fixpunkt\\
+Sei $T$ die Linearisierung (Taylorentwicklung bis zur Ordnung 1, also die Jacobimatrix) eines (\textit{nicht-linearen}) autonomen Systems mit Entwicklungspunkt $y_0$, dann ist $y_0$ ein hyperbolischer Fixpunkt, wenn für alle Eigenwerte $\lambda_k$ von $T$, $Re(\lambda_k) \neq 0$ gilt.
+
+\paragraph{Def} kritischer Punkt\\
+Sei $G \subset 	\mathbb{R}$, $\varphi : G \rightarrow \mathbb{R}$ und $\eta 
+\in G$, dann ist $\eta$ ein \textit{kritischer} Punkt, falls $\varphi(\eta) = 0$, sonst ist $\eta$ ein \textit{regulärer} Punkt.
+
+\section{Randwertprobleme}
+
+\begin{align}
+    \tag{Sturmsches RWP}
+    \label{eq:sturm-rwp}
+    \begin{split}
+        \left(p(x)y'\right)' + q(x)y&=r(x)\\
+    R_1y =\alpha_1y(a)+\alpha_2y'(a)&=\eta_1\\
+    R_2y =\beta_1y(b)+\beta_2y'(b)&=\eta_2
+    \end{split}
+\end{align}
+\eqref{eq:sturm-rwp} heißt \emph{halbhomogen}, wenn $\eta_1 = \eta_2 = 0$\\
+\eqref{eq:sturm-rwp} heißt \emph{homogen}, wenn $\eta_1 = \eta_2 = 0$ und $r = 0$
+
+\subsection{Bemerkungen zum Sturmschen RWP (Lemma 3.2.4)}
+Folgende Aussagen sind äquivalent:
+\begin{enumerate}
+    \item \eqref{eq:sturm-rwp} besitzt eindeutige Lösung
+    \item Das zugehörige homogene RWP ($\eta_1=\eta_2=r=0$) besitzt nur Lösung $y=0$
+    \item Für jedes FS $y_1, y_2$ von $\left(p(x)y'\right)' + q(x)y=0$ gilt \\
+    \label{eni:sturm-2}
+    \begin{equation*}
+        \det \begin{pmatrix}
+        R_1y_1 & R_1y_2 \\
+        R_2y_1 & R_2y_2
+        \end{pmatrix}
+        \neq 0
+    \end{equation*}
+    \item \ref{eni:sturm-2} gilt für mindestens ein FS
+\end{enumerate}
+
+\subsection{Umformen auf halbhomogenes RWP}
+Es sei $f\in C^2([a,b])$ und $R_1f=\eta_1$ und $R_2f=\eta_2$ und $p(x)>0\; \forall x\in [a,b]$ und $q,r \in C([a,b])$.
+Wenn \eqref{eq:sturm-rwp} eindeutig lösbar ist, und $w$ eindeutige Lösung des halbhomogenen RWP
+\begin{equation*}
+    \begin{gathered}
+        \left(p(x)y'\right)' + q(x)y = r(x)-\left( p(x)f'(x) \right)' +q(x)f(x)\\
+        R_1y = R_2y=0
+    \end{gathered}
+\end{equation*}ist, dann ist $w+f$ Lösung von \eqref{eq:sturm-rwp}
+
+\subsection{Lösen von RWP mit Greenscher Funktion}
+Das homogene RWP $\left(p(x)y'\right)' + q(x)y = 0$, $R_1y=0$, $R_2y=0$ sei nur trivial lösbar. $y_1, y_2$ sei zugehöriges Fundamentalsystem von $\left(p(x)y'\right)' + q(x)y = 0$, $R_1y_1=0$, $R_2y_2=0$,  mit zugehöriger Wronski Determinante (\ref{subsec:wronski-det}) $W$. Dann lautet die Greensche Funktion
+\begin{equation}
+    \tag{Greensche Funktion}
+    \label{eq:greensche-fkt}
+    G: [a,b]^2 \rightarrow \mathbb{R},\; G(x,t) = 
+    \begin{dcases}
+        \frac{y_1(x)y_2(t)}{p(a)W(a)}, & t\geq x\\
+        \frac{y_1(t)y_2(x)}{p(a)W(a)}, & t\leq x
+    \end{dcases}
+\end{equation}
+und die Lösung des halbhomogenen RWP $\left(p(x)y'\right)' + q(x)y = r(x)$ ist gegeben durch
+\begin{equation*}
+    y: I \rightarrow \mathbb{R},\; y(x) = \int_a^b G(x,t)r(t)\diff t
+\end{equation*}.

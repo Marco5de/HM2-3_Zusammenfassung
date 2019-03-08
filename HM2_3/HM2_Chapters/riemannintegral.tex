@@ -1,0 +1,301 @@
+\section{Kurvenintegrale}
+\subsection{Grundbegriffe}
+\begin{itemize}
+    %\item \todo[inline]{Parameterdarstellung}
+    \item Äquivalenz zweier Parameterdarstellungen wenn es eine stetige, streng monoton wachsende Funktion gibt $\phi: I_1 \rightarrow I_2$ mit $x_1(t) = x_2 \circ \phi(t)$ mit $x_1: I_1 \rightarrow \mathop{R}^n$, $x_2: I_2 \rightarrow \mathbb{R}^n$ zwei Parametderdarstellungen
+    \item Träger der Kurve ist das gemeinsame Bild äquivalenter Parameterdarstellung (Notation: $\gamma^*$)
+    \item \label{GlatteKurveDef}Kurve ist stetig diff'bar wenn Parameterdarstellung $x: I \rightarrow \mathbb{R}^n$ stetig diff'bar ist.\\
+    Gilt zusätzlich $x'(t) \neq 0$ für alle $t \ \varepsilon \ I$ heißt die Kurve glatt
+    \item Eine Kurve heißt rektifizierbar wenn sie von endlicher Länge ist
+    \item Jede stetig diff'bare Kurve $\gamma$ ist rektifizierbar:\\
+    $x: [a,b] \rightarrow \mathbb{R}^n$ stetig diff'bare Parameterdarstellung dann ist die Länge der Kurve durch \\
+    $L(\gamma) = {\int_{a}}^{b} |\frac{d}{dt}x(t)|dt = \int_{a}^{b} \sqrt{{x'_{1}}^2+\dots+{x'_{n}}^2}dt$\\
+    gegeben
+\end{itemize}
+
+\subsection{Kurvenintegral 1. Art}
+Allgemein: Integral einer \textbf{skalaren} Funktion über eine Kurve.
+
+\subsubsection{Existenz}
+
+%REF: 3.1.10
+Wenn gilt:
+\begin{itemize}
+    \item $\gamma$ glatte Kurve \hyperref[GlatteKurveDef]{link}
+    \item $x: [a,b] \rightarrow \mathbb{R}^n$ glatte Parametrisierung
+    \item $f$ stetig auf Träger der Kurve
+\end{itemize}
+Dann existiert das Kurvenintegral 1. Art.
+% TODO: hier noch mehr kriterien für existenz einfügen
+
+\subsubsection{Berechnung}
+Kurve $\gamma$ (z.b. auf $\mathbb{R}^2$), $f(s)$ Funktion (hier: $f: \mathbb{R}^2 \rightarrow \mathbb{R}$), $x(t)$ Parametrisierung der Kurve auf Intervall $[a,b]$
+\begin{equation}
+    \int_\gamma f(s) \diff s = \int_a^b f(x(t)) |\Dot{x}(t)| \diff t
+\end{equation}
+\subsection{Kurvenintegral 2. Art}
+Allgemein: Integral einer \textbf{vektorwertigen} Funktion über eine Kurve.\\
+Interpretation: Summe projizierter Flächen, Energie eines Massepunkts durch ein Kraftfeld.
+
+\subsubsection{Existenz}
+$\gamma$ rektifizierbare Kurve, $x: [a,b] \rightarrow \mathbb{R}^n$ Parametrisierung, $f: \gamma^* \rightarrow \mathbb{R}^n$ vektorwertig.\\
+Beachte, dass $x$ und $f$ aus dem selben Raum ($\mathbb{R}^n$) stammen bzw. abbilden.\\
+Wenn gilt:
+\begin{itemize}
+    \item $f$ stetig auf $\gamma^*$
+    \item $x$ stetige Parametrisierung
+\end{itemize}
+Dann existiert das Kurvenintegral 2. Art.
+%\todo[inline]{Existenz}
+
+\noindent Das Kurvenintegral 2. Art ist als\\
+\begin{equation}
+    \int_{\gamma} \vv{f} \ d\vv{s} =\int_{a}^{b} \vv{f}(\omega(t))\cdot \frac{d\omega(t)}{dt} \ \diff{t}
+\end{equation}
+definiert.\\
+
+\newlinepar{Berechnung}
+Die Vorgehensweise zum berechnen ist nun die Folgende:
+\begin{enumerate}
+    \item Bestimme Parametrisierung $\omega(t)$ der Kurve
+    \item Parametrisierung in Funktion f einsetzten, Grenzen als Grenzen des Parameterbereichs wählen
+    \item Ableitung $\frac{d\omega (t)}{dt}$ berechnen (komponentenweise ableiten)
+    \item Skalarprodukt aus $f(\omega(t))$ und $\frac{d\omega (t)}{dt}$ berechnen und Integration ausführen
+\end{enumerate}
+
+\subsection{Wegunabhängigkeit}
+\begin{itemize}
+    \item offene und zusammenhängende Menge $U \ \subset \ \mathbb{R}^n$ heißt Gebiet
+    \item U ein Gebiet, $f: U\rightarrow \mathbb{R}^n$ stetig, dann ist $f$ auf $U$             wegunabhängig int'bar/konservativ:\\
+          $\int_\gamma f(x) \ dx = \int_{\widetilde{\gamma}} f(x) \ dx$ für stetig diff'bare Kurven $\gamma,\widetilde{\gamma} \ \subset \ U$
+    \item f auf U wegunabhängig int'bar $\iff$ jede glatte geschlossene Kurve $\gamma       \ \subset \ U$ gilt $\oint_\gamma f(x) \ dx = 0$ $\iff \text{rot} \vec{f}=\nabla \times \vec{f}=0$
+    \item $f: U \subset \mathbb{R}^n \rightarrow \mathbb{R}^n$ auf U wegunabhängig         int'bar $\iff$ f Gradienten- Potenzialfeld (dh. es gibt bis auf konstante        definierte Stammfkt.)
+\end{itemize}
+
+\section{Jordan-Inhalt}
+\subsection{Kriterien für Jordan-Messbarkeit}
+\begin{itemize}
+    \item Menge Jordan-Messbar $\iff$ Rand der Menge ist Jordansche Nullmenge
+    \item $M1$ Jordan-Messbar $\wedge$ $M2$ Jordan Messbar $\implies$ $M1 \times M2$ Jordan-Messbar
+\end{itemize}
+
+
+\section{Satz von Fubini}
+\begin{itemize}
+    \item $M \subset \mathbb{R}^m, N\subset \mathbb{R}^n$ Jordan-messbar
+    \item f über M x N int'bar
+    \item Existenz von $F(y) = \int_M f(x,y) \ dx$ für alle $ y  \ \varepsilon \ N $
+\end{itemize}
+\begin{equation}
+    \int_{M\times N} f(x,y)\diff (x,y) = \int_N \left ( \int_M f(x,y) \diff x \right)\diff y
+\end{equation}
+
+Beachte, dass die Existenz des Integrals $F(y)$ vorausgesetzt wird. Dies muss nach der Berechnung überprüft werden. Es wurde auf Blatt 12 außerdem gezeigt, dass, wenn der Satz von Fubini anwendbar ist, die Integrationsreihenfolge vertauscht werden darf.
+
+\section{Transformationsformel}
+\begin{itemize}
+    \item $U \subset \mathbb{R}^n$ offen
+    \item $T: U\to V=T(U)\subset\mathbb{R}^n$ injektiv
+    \item $y(x)= \begin{pmatrix}y_1(x)\\ \vdots \\y_n(x) \end{pmatrix} = \begin{pmatrix}T_1(x)\\ \vdots \\T_n(x) \end{pmatrix} = T(x)$
+    \item $\forall x \in  U\ \vert J_T(x)\vert = det (\begin{pmatrix}\frac{\partial y_1}{\partial x_1} & \dots & \frac{\partial y_1}{\partial x_n}\\
+    \vdots & & \vdots\\
+    \frac{\partial y_n}{\partial x_1} & \dots & \frac{\partial y_n}{\partial x_n}
+     \end{pmatrix}(x)) \neq 0$\\
+     Damit ist T diff'bar
+     \item $ f \ \varepsilon \ C_0(V)$ (Nullrandwerte $(supp(f)\subset\subset V)$), dann ist auch $f \circ T \ \varepsilon \ C_0(U)$
+\end{itemize}
+
+\begin{equation}
+    \int_{V=T(U)} f(y) \ dy = \int_U f(T(x)) |J_T(x)| dx
+\end{equation}
+
+$J_T(x)$ wird auch als Funktionaldeterminante bezeichnet.
+
+\section{Integralsätze}
+\subsection{Oberflächenintegrale erster Art}
+Ist M explizit durch $f: D \subset \mathbb{R}^{n-1} \rightarrow \mathbb{R}$ gegeben, dann gilt für das Oberflächenintegral erster Art : \\
+\begin{equation}
+    \int_M g(x)dS = \int_D g(x) \sqrt{1+\sum_{i=1}^{n-1} \frac{\partial f}{\partial x_i}(x')dx'}
+\end{equation}
+
+\subsubsection{Fall n=3}
+Ist $n=3$ und die Parameterdarstellung $f: P\subset \mathbb{R}^2 \to \mathbb{R}^3$, so gilt 
+\begin{equation}
+    \int_M g(x) dx = \int_P g(f(p))\cdot\sqrt{A^2+B^2+C^2} \ dp
+\end{equation}
+
+Hierbei ist $ A := det(\frac{\partial (y,z)}{\partial (p_1, p_2)})$,
+            $ \textbf{-}B := det(\frac{\partial (x,z)}{\partial (p_1, p_2)})$
+            und $ C := det(\frac{\partial (x,y)}{\partial (p_1, p_2)})$.\\
+Siehe Skript 3.8.13 für genauere Herleitung.
+
+\subsection{Gauß'scher Satz}
+\newlinepar{Definition}
+Sind die Voraussetzungen 
+\begin{itemize}
+    \item $\partial U \ \varepsilon \ C^1$
+    \item $g \ \varepsilon \ C^1(U,\mathbb{R}^n) \cap C^0(\bar{U})$ ein Vektorfeld
+\end{itemize}
+gegeben, dann gilt
+
+\begin{equation}
+    \int_U \text{div}\ \vec{g} \ dU = \int_{\partial U} \vec{g} \ d\overrightarrow{S}
+\end{equation}
+
+\noindent Bei der linken Seite kann als Volumenintegral verstanden werden und die rechte Seite als 
+Oberflächenintegral.\\
+
+\noindent Anschaulich bedeutet dass, die Summe der Größen die aus einem Volumen entweicht oder hineingeht entspricht der Summe, die im Inneren entsteht oder verschwindet. Dabei stellt die Divergenz eine Quelle oder Senke dar. Ist die Divergenz 0 sagt man g ist quellenfrei.\\
+Das Oberflächenintegral wird auch als Oberflächenintegral 2. Art bezeichnet.\\
+\newlinepar{Vorgehen}
+\begin{itemize}
+    \item wenn möglich, Divergenz berechnen und so lösen
+    \item sonst Darstellung für Rand finden, bestimmen der Normalenvektoren und Durchführung der Integration
+\end{itemize}
+
+%\todo[inline]{Tutorium Voraussetzung U kompakt?}
+% also wikipedia formuliert den satz mit kompakter menge -jonas
+
+\newlinepar{Beispiel aus Tutorium}
+Gegeben ist die Menge $U \subset \mathbb{R}^3$:
+\begin{equation*}
+    U=\{x\in \mathbb{R}^3 | x^2+y^2\leq 4 \wedge 0\leq z \leq 4\}
+\end{equation*}
+Und die Funktion
+\begin{equation*}
+    \vec{f}(x,y,z)=\begin{pmatrix}x\\y\\z\end{pmatrix}
+\end{equation*}
+Zu berechnen ist
+\begin{equation*}
+    \int_{\partial U} \vec{f} \diff \vec{S}
+\end{equation*}
+Dies wird mit dem Satz von Gauß (und dem Umwandeln in Zylinderkoordinaten) vereinfacht:
+\begin{equation*}
+    \begin{split}
+        \int_{\partial U} \vec{f} \diff \vec{S} & = \int_U \text{div}(f) \diff V \\
+        & = \int_U 3 \diff V \\
+        & = \int_0^2 \int_0^{2\pi} \int_0^4 (3 \cdot \underbrace{\rho}_{\mathclap{\text{Funktionaldeterminante}}})  \diff z \diff \varphi \diff \rho \\
+        & = 3 \cdot 2\pi \cdot 4 \cdot \left[\frac{\rho^2}{2}\right]_0^2 \\
+        & = 48\pi
+    \end{split}
+\end{equation*}
+
+
+\newlinepar{Anwendung}
+%\todo[inline]{}
+
+\subsection{Satz von Green / Gauß'scher Satz in der Ebene}
+\newlinepar{Definition}
+Ist $B \ \varepsilon \ C^1$ ein offener und einfach zusammenhängender Bereich im $\mathbb{R}^2$ und $P,Q \ \varepsilon \ C^1(B)\cap C^0(\bar{B)}$, dann gilt \\
+\begin{equation}
+    \int_B (\frac{\partial Q}{\partial x_1} - \frac{\partial P}{\partial x_2})d(x_1,x_2) = \oint_{\partial B} (P(x_1,x_2)dx_1 + Q(x_1,x_2)dx_2)
+\end{equation}
+
+Die Schreibweise \\
+
+\begin{equation}
+    \oint_{\partial U} \vv{f} \ d\vv{s} = \int_U \left(\frac{\partial f_2}{\partial x_1} - \frac{\partial f_1}{\partial x_2}\right)d(x_1,x_2)
+\end{equation}
+
+ist dazu äquivalent, wobei U weiterhin der Bereich ist und $\vv{f}$ ein Vektorfeld mit den Komponentenfunktionen $f_1,f_2$.\\
+Die linke Seite kann hier als Kurvenintegral zweiter Art über den Rand des Bereichs gelöst werden.
+
+\phantomsection
+\label{par:green-bsp}
+\newlinepar{Beispiel aus Tutorium}
+Die Funktion $f$ ist hier definiert als
+\begin{equation*}
+    \vec{f}(x)=\begin{pmatrix}e^x-y \\ \sin{y} +x\end{pmatrix}
+\end{equation*},
+der Bereich U als
+\begin{equation*}
+    U=\{x \in \mathbb{R}^2 | x^2 \leq y \leq 4\}
+\end{equation*}
+
+\begin{tikzpicture}
+    \begin{axis}[axis lines=middle,
+                xlabel=$x$,
+                ylabel=$y$,
+                enlargelimits,
+                ytick=\empty,
+                xtick={-2,2},
+                ytick={4}]
+                
+    \addplot[name path=F,blue,domain={-2.1:2.1}] {x^2} node[pos=1, below]{$f$};
+    \addplot[name path=G,green,domain={-2.1:2.1}] {4}node[pos=1, below]{$g$};
+    
+    \addplot[pattern=north east lines,pattern color=gray]fill between[of=F and G, soft clip={domain=-2:2}];
+    
+    \node[coordinate,pin=0:{$U$}] at (axis cs:1.1,1.6){};
+    
+    \end{axis}
+\end{tikzpicture}
+
+\noindent
+Es soll berechnet werden:
+\begin{equation*}
+    \oint_{\partial U} \vec{f}\diff \vec{s}
+\end{equation*}
+Dies wird nun mit dem Satz von Green vereinfacht:
+\begin{equation*}
+    \oint_{\partial U} \vec{f}\diff \vec{s} = \int_U \left[ \frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y} \right] \diff (x,y)
+\end{equation*}
+Die Ableitungen berechnen sich hier einfach:
+\begin{equation*}
+    \frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y} = 1 - (-1) = 2
+\end{equation*}
+Für das Integral gilt also
+\begin{equation*}
+\begin{split}
+    \int_U \left[ \frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y} \right] \diff (x,y) & = \int_U 2 \diff (x,y)\\
+    & = \int_{-2}^2 \int_{x^2}^4 2 \diff y \diff x \\
+    & = 2 \cdot \int_{-2}^24-x^2 \diff x \\
+    & = 2 \cdot \left[ 4x-\frac{1}{3}x^3\right]_{-2}^2  \\
+    & = \frac{64}{3} \\
+    & = \oint_{\partial U} \vec{f}\diff \vec{s}
+\end{split}
+\end{equation*}
+
+\newlinepar{Anwendung}
+Falls ein zweidimensionales, geschlossenes Kurvenintegral berechnet werden soll, und die Ableitungen $\frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y}$ \glqq schön\grqq sind, kann der Satz von Green wie im \hyperref[par:green-bsp]{Beispiel} angewendet werden.
+
+\subsection{Partielle Integration}
+Analog zur partiellen Integration im 1D-Fall gibt es auch im nD-Fall eine solche Formel\\
+\begin{itemize}
+    \item $u,v \ \varepsilon \ C^1(U)\cap C^0(\bar{U})$
+\end{itemize}
+
+\begin{centering}
+    $\Rightarrow \int_U u_{x_i} \ v \ dx = -\int_U u \ v_{x_i} \ dx + \int_{\partial U} uv\nu_i \ dS$\\
+\end{centering}
+
+\subsection{Green'sche Formeln}
+Ist $u,v \ \varepsilon \ C^2(U)\cap C^1(\bar{U})$ dann gilt\\
+\begin{itemize}
+    \item $\int_U \bigtriangleup u \ dx = \int_{\partial U} \frac{\partial u}{\partial \nu} \ dS$
+    \item $\int_U Du\cdot Dv \ dx = -\int_U u\bigtriangleup v \ dx + \int_{\partial U} u\frac{\partial v}{\partial \nu} \ dS$
+    \item $\int_U (u\bigtriangleup v - v\bigtriangleup u) \ dx = \int_{\partial U} (u\frac{\partial v}{\partial \nu} - v\frac{\partial u}{\partial \nu}) \ dS$
+\end{itemize}
+
+\subsection{Satz von Stokes}
+\begin{itemize}
+    \item $P \subset \mathbb{R}^2$ eine offene, einfach zusammenhängende Menge (Gebiet)
+    \item stückweise glatte, doppelpunktfreie Kurve $\gamma_p = \partial P$
+    \item $\omega(s)$ mit $s \ \in \ [0,L(\gamma_p)]$ die Parametrisierung nach der Bogenlänge 
+    \item $U \subset \bar{P}$ und $f: U \to \mathbb{R}^3$ injektiv
+    \item $f \ \in \ C^2(U)$ mit $rg(Df)=2$
+    \item $H = f(\bar{P})$ in Parameterdarstellung gegebene Fläche
+    \item $x(s) = f(\omega(s))$ mit $s \ \in \ [0,L(\gamma_p)]$ eine Parametrisierung der Randkurve von M
+    \item Vektorfeld $g \ \in \ C^1(V,\mathbb{R}^3)$ mit $V \subset \mathbb{R}^3$
+\end{itemize}
+\begin{equation}
+    \int_H rot(\vv{g})\vv{n} \ dO = \int_{\partial H} \vv{g} \ d\vv{s}
+\end{equation}
+
+Die rechte Seite kann hier wieder als Kurvenintegral gelöst werden.\\
+Die Normale kann hier folgendermaßen bestimmtwerden
+\begin{equation}
+    \vv{n} = \frac{D_{p_1}f \ \times \ D_{p_2}f}{\norm{D_{p_1}f \ \times \ D_{p_2}f}} = \frac{1}{\norm{D_{p_1}f \ \times \ D_{p_2}f}} \cdot  \begin{pmatrix} \frac{\partial f_1}{\partial p_1} \\\frac{\partial f_2}{\partial p_1} \\ \frac{\partial f_3}{\partial p_1}  \end{pmatrix} \times \begin{pmatrix} \frac{\partial f_1}{\partial p_2} \\\frac{\partial f_2}{\partial p_2} \\ \frac{\partial f_3}{\partial p_2}  \end{pmatrix}
+\end{equation}
+
+Da das Kurvenintegral nur vom Rand abhängt, folgt, dass Flächen mit gleichem Rand hier das gleiche Ergebnis liefern $\Rightarrow$ eine komplizierte Menge kann durch eine einfache Menge mit gleichem Rand dargestellt werden

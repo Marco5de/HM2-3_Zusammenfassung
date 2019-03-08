@@ -1,0 +1,205 @@
+\section{Topologie}
+\subsection{Grundbegriffe}
+Sei $(M,d)$ ein metrischer Raum $\wedge \  A \subseteq M$,$a \in M$ dann ist:
+\begin{itemize}
+    \item  Inneres $\overset{\circ}{A} :=\{a\in M\ \vert \ \exists \ \varepsilon >0         :U_{\varepsilon}(a) \subseteq A\}$
+    \item Abschluss $\overline{A}:=\{ a \in M\ \vert \ \forall \varepsilon>0 :               U_\varepsilon(a) \cap A \neq \varnothing \}$
+    \item Häufungspunkt $A^\prime:=\{\forall \varepsilon>0 : \.{U}_\varepsilon(a) \cap A         \neq \varnothing \}$ 
+    \item Randpunkte $\partial A:= \{a \in M\ \vert \ \forall \varepsilon>0\ \exists         x,y:x\in A , y\in A^c\ \wedge \ x,y \in U_\varepsilon(a) \}$
+    \item Bedingung für Isolierte Punkte $a\in A:\ \ \exists \ \varepsilon>0 :               U_\varepsilon(a) \cap A =\{a\}$
+    \item \underline{offene Menge}
+    \subitem $\iff$ jedes $a\in A$ ist innerer Punkt von $A$ 
+    \item \underline{abgeschlossene Menge}
+    \subitem $\iff \ A^c$ ist offen 
+    \subitem $\iff \partial A \subseteq A$ 
+    \subitem $\iff A=\overline{A}$
+    \item $K \subset \mathbb{R}$ kompakt $\iff K$ beschränkt und abgeschlossen
+\end{itemize}
+
+\subsection{Metriken}
+Sei $X$ eine beliebige Menge, dann ist $d: X\times X \rightarrow \mathbb{R}$ eine Metrik wenn für $x,y,z\in X$ folgende Axiome erfüllt sind:
+\begin{itemize}
+    \item [(M$1$)] Pos. Definitheit $d(x,y)\ge 0 \ \wedge \ d(x,y)=0 \iff x=y$
+    \item [(M$2$)] $d(x,y)=d(y,x)$
+    \item [(M$3$)] Dreiecksungleichung $d(x,y)\le d(x,z)+d(z,y)$
+\end{itemize}
+
+\section{Funktionen und Abbildungen}
+
+
+\section{Differenzierbarkeit}
+\subsection{Grundbegriffe}
+\begin{itemize}
+    \item partielle Ableitung:\\ $\frac{\partial f}{\partial x_j}(x_0) = d_j f(x_0) = \lim_{h\to 0}\frac{f(x_1^{(0)} \dots x_j^{(0)}+h \dots x_n^{(0)})-f(x_0)}{h}$\\
+    f ist partiell diff'bar in $x_0$ falls alle partiellen Ableitungen existieren mit $\nabla f(x_0)$
+    \item Stetigkeit in Achsenrichtung: \\
+    Ist f in $x_0$ nach $x_i$ diff'bar, so ist f in $x_0$ in Richtung der $x_i$-Achse stetig. ($\neq$ Stetigkeit in alle Richtungen)
+    \item Richtungsableitungen:\\
+    $e \in \mathbb{R}^n$ ein Richtungsvektor mit $\norm{e}=1$, $x_0 \in U$ existiert \\
+    $\lim_{h\to 0}\frac{f(x_0 + he)-f(x_0)}{h}$, so ist dies die Richtungsableitung von f nach $e$ in $x_0$: $\frac{\partial f}{\partial e}(x_0)$\\
+    Der Gradient ist ein Spezialfall einer Richtungsableitung und steht immer senkrecht auf den Höhenlinien ($f(x) = c$) und zeigt in die Richtung des stärksten Anstiegs.
+\end{itemize}
+\subsubsection{Totale Ableitung}
+Eine Funktion $f: U\to \mathbb{R}^n$ ist in $x_0 \in U$ total diff'bar, falls f in $x_0$ linearisierbar ist: \\
+\begin{equation}
+    \bigvee x \in U \  \exists A: f(x) = f(x_0) + A(x-x_0) + r(x,x_0)
+\end{equation}
+wobei $A$ eine Matrix und $r(x,x_0)$ ein Restterm ist.\\
+Bemerkung: $A$ ist die Jacobi-Matrix, bzw bei einer skalarwertigen Funktion der (transponierte) Gradient der Funktion an der entsprechenden Stelle.\\
+Ist f in U partiell diff'bar und die partiellen Ableitungen in $x_0$ stetig, dann ist f total diff'bar.\\
+Notation: $f'(x_0) = Df(x_0)$\\
+Für den Restterm muss gelten 
+\begin{equation}
+    \lim_{x\to x_0}\frac{\|r(x,x_0)\|}{\|x-x_0\|} = 0
+\end{equation}
+
+\subsubsection{Totale Diff'barkeit und Richtungsableitungen}
+Ist f in $x_0$ total diff'bar, dann ist f in $x_0$ in jede Richtung diff'bar und für die Richtungsableitungen gilt 
+\begin{equation}
+    \frac{\partial f}{\partial e} = \langle \nabla f(x_0),e\rangle = - \frac{\partial f}{\partial (-e)} = \lim_{h\to 0}\frac{f(x_0+he)-f(x_0)}{h}
+\end{equation}
+Beachte, aus Diff'barkeit in jede Richtung folgt nicht totale Diff'barkeit, sobald die partiellen Ableitungen nicht stetig sind!
+
+\subsection{Mehrdimensionale Kettenregel}
+Sind $f:\mathbb{R}^n\to \mathbb{R}^l$ und $g:\mathbb{R}^l\to \mathbb{R}^m$ diff'bare Abbildungen, dann ist auch $g\circ f: \ \mathbb{R}^n\to \mathbb{R}^m$ diff'bar. Die Ableitung im Punkt p ist dann als die Hintereinanderausführung der Ableitung von \f in p und der Ableitung von g in $f(p)$ definiert
+\begin{equation}
+    D(g\circ f)_p = Dg_{f(p)}\circ Df_p
+\end{equation}
+
+\noindent Wird die Verkettung mit $h(x)= g\circ f$ definiert gilt dann 
+\begin{equation}
+    \frac{\partial h_i}{\partial x_j}(p) = \sum_{k=1}^{l} \frac{\partial g_i}{\partial y_k}(f(p)) \cdot \frac{\partial f_k}{\partial x_j}(p)
+\end{equation}
+hierbei werdem die Koordinaten im Def-Bereich von f als $x=(x_1,\dots,x_n)$ und die Koordinaten im Bildraum $\mathbb{R}^l$ von \f mit $y=(y_1,\dots,y_l)$ bezeichnet.
+
+\subsection{Satz von Schwarz}
+Existiert die partielle Ableitung ist $\frac{\partial^2 f}{\partial x_j \partial x_i}(x_0)$ die zweite partielle Ableitung von f nach $x_i$ und $x_j$ (in dieser Reihenfolge).\\
+
+Ist f in einer Umgebung von $x_0 \in \mathbb{R}^n$ stetig, existieren in $x_0$ $f_{x_i},f_{x_j},f_{x_i,x_j},f_{x_j,x_i}$ und sind die zweiten partiellen Ableitungen stetig in $x_0$ so gilt
+\begin{equation}
+    \frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i}
+\end{equation}
+Das ist gleichbedeutend damit, dass die Hesse-Matrix symmetrisch ist.
+
+\section{Lokale Extrema}
+
+\newlinepar{Vorgehensweise: Extrema im $\mathbb{R}^n$ bestimmen}
+\begin{enumerate}
+    \item Gradient $\nabla f(x)$ bestimmen
+    \item $\nabla f(x) = 0$ lösen
+    \item Hesse-Matrix betrachten um Art des Extremums zu bestimmen  (\nameref{subsec:zweite-ableitung-krit-hessematrix})
+\end{enumerate}
+
+\subsection{Satz von Fermat}
+\begin{itemize}
+    \item $U \subset \mathbb{R}$ offen
+    \item $f$ besitze in $x_0 \in U $ ein lokales Extremum und dort partiell diff'bar \\
+    $\Rightarrow \nabla f(x_0) = 0$ 
+    \item gilt $\nabla f(x_0) = 0$ heißt $x_0$ kritischer oder stationärer Punkt von $f$ 
+\end{itemize}
+
+\subsection{Zweite Ableitung Kriterium}
+\label{subsec:zweite-ableitung-krit-hessematrix}
+Es sei $f \varepsilon C^2(U)$ und $x_0 \in U$ ist kritischer Punkt $\Rightarrow \nabla f(x_0) = 0$
+\begin{itemize}
+    \item Hesse-Matrix positiv definit $\Rightarrow$ Minimum
+    \item Hesse-Matrix negativ definit $\Rightarrow$ Maximum
+    \item Hesse-Matrix indefinit $\Rightarrow$ Sattelpunkt
+    \item Hesse-Matrix semi-positiv definit $\Rightarrow$ Minimum oder Sattelpunkt
+    \item Hesse-Matrix semi-negativ definit $\Rightarrow$ Maxiumum oder Sattelpunkt
+    \item Hesse-Matrix semi definit $\Rightarrow$ keine Aussage möglich. Betrachtung mit Definition und ggf. $\varepsilon$-Umgebung
+\end{itemize}
+
+\section{Implizite Funktionen}
+\subsection{Lokale Injektivität}
+$f \in C^2(U,\mathbb{R}^n$), $a \in U$ und $\vert Jf(a)\vert \neq 0$. Dann ist f lokal injektiv: \\
+Es gibt offene Umgebung $U(a) \subset U$, so dass f auf diese Umgebung eingeschränkt injektiv ist.
+
+\subsection{Lemma 2.5.5}
+Es sei $f \in C^1(U,\mathbb{R}^n)$ injektiv, $a \in U$ mit $b := f(a)$. b ist dann innerer Punkt von $f(U)$, d.h. es existiert eine Umgebung $V(b)$ mit $V(b) \ \subset  \ f(U)$. \\
+Mit anderen Worten: \f ist lokal bijektiv, so dass die Gleichung $f(x) \ = \ y$ für jedes $y \in V(b)$ genau eine Lösung $x \in U$ besitzt.
+
+%\todo[inline]{einfügen von Lemma 2.5.5}
+
+\subsection{Homöomorphismus und Umkehrfunktion}
+Es sei $f \in C^1(U,\mathbb{R}^n)$ (global) injektiv, $Jf(x)\neq 0$ für alle $x \in U$. Dann ist $f(U)$ offen und $f: U \rightarrow f(U)$ ist ein Homöomorphismus (f ist bijektiv und stetig). Weiter ist $f^{-1}: f(U) \rightarrow U$ ebenfalls stetig.
+\\m
+Außerdem gilt unter den Vorraussetzungen $f \in C^1(U,\mathbb{R}^n)$, $a \in U$ mit $Jf(a)\neq 0$ und $b=f(a)$, dass es immer eine offene Umgebung $U(a)$ bzw. $V(b)$ gibt, auf welche eingeschränkt f ein Homöomorphismus ist.\\
+$f: U(a) \rightarrow V(b)$
+
+\subsection{Umkehrformel}
+Es sei $f \in C^1(U,\mathbb{R}^n)$ injektiv mit $Jf(x)\neq 0$ für alle $x \in U$.\\
+Dann ist $f^{-1}: f(U)\rightarrow U$ stetig diff'bar und $y=f(x) \in f(U)$ gilt die Umkehrformel:\\
+$Df^{-1}(y) = \left(\frac{\partial f^{-1}_k}{\partial y_l}(y)\right)_{k,l=1}^{n} = (Df(x))^{-1} = {\big (}{\big(}\frac{\partial f_j}{\partial x_i}(x){\big )}_{i,j=1}^{n}{\big )}^{-1}$
+
+\subsection{Stetig Diff'barkeit der Umkehrfunktion}
+Existiert die Umkehrfunktion von \f und ist \f in einer Umgebung U p-mal stetig diff'bar, so ist auch die Umkehrfunktion $f^{-1}$ p-mal stetig diff'bar auf $f(U)$.
+
+\subsection{Satz über inverse Abbildung}
+
+
+%\todo[inline]{Satz über inverse Abbildungen: Skript 2.5.11}
+
+\subsection{Satz über implizite Funktionen}
+Informell liefert der Satz über implizite Funktionen ein Funktion, deren Bild eine Menge von Punkten in der Definitionsmenge beschreibt, welche auf gleichem Potenzial liegen.
+\begin{equation*}
+    {\frac {\partial F}{\partial x}}(x,y(x))+{\frac {\partial F}{\partial y}}(x,y(x))\cdot {\frac {\partial y}{\partial x}}(x)=0
+\end{equation*}
+wobei dann nach ${\frac {\partial y}{\partial x}}$ umgestellt:
+\begin{equation*}
+    {\frac {\partial y}{\partial x}}(x)=-\left({\frac {\partial F}{\partial y}}(x,y(x))\right)^{-1}\cdot {\frac {\partial F}{\partial x}}{\big (}x,y(x){\big )}
+\end{equation*}
+Der Satz lässt sich so auch auf (nicht notwendigerweise lineare) Gleichungssysteme mit n Gleichungen anwenden. \\
+Wobei ${\frac {\partial y}{\partial x}}$ und ${\frac {\partial F}{\partial x}}{\big (}x,y(x)_1...y(x)_k{\big )}$ dann jeweils Vektoren der Länge n sind und 
+\begin{equation*}
+    \left({\frac {\partial F}{\partial y}}(x,y(x)_1...y(x)_k)\right)^{-1}={\big (}J_f{\big )}^{-1} 
+\end{equation*}
+gerade die invertierte Jacobi-Matrix über ${\big (}y_1...y_k{\big )}$
+ nach denen aufgelöst werden soll ist. \\
+ Alternativ zur Berechnung der Inversen und ggf. einfacher können die Gleichungen auch für sich abgeleitet werden. Umstellen und Einsetzten führt dann zum gleichen Ergebnis.
+
+%\todo[inline]{letzten Abschnitt bitte überprüfen!}
+
+%\todo[inline]{Implizite Differentiation mit Def aus Skript:2.5.18 ergänzen}
+
+
+\subsection{Satz über implizite Funktionen im \texorpdfstring{$\mathbb{R}^2$}{R2}}
+\begin{itemize}
+    \item $U \ \subset \ \mathbb{R}^2$ offen
+    \item $f: U\rightarrow \mathbb{R}$ in $C^1(U)$ und $\begin{pmatrix} a \\b  \end{pmatrix} \in U$
+    \item $\nabla f(a,b)\neq 0$ und $c:=f(a,b)$
+\end{itemize}
+Dann gibt es eine offene Umgebung $U(a,b) \ \subset \ U$, ein $\epsilon > 0$ und eine $C^1$-Kurve $\gamma: (-\epsilon,\epsilon) \rightarrow U(a,b)$ mit $\gamma(0) = \begin{pmatrix} a \\b  \end{pmatrix}$.\\
+Dann gibt $\gamma$ gerade die Funktion der gesuchten Niveaumenge an.
+
+\subsection{Lagrange Multiplikatorenregel}
+\begin{itemize}
+    \item $M \ \subset \ \mathbb{R}^n$ offen
+    \item $f: M \rightarrow \mathbb{R}$ und $f \in C^1(M)$
+    \item $g: M \rightarrow \mathbb{R}^s$ und $g \in C^1(M)$
+    \item $s<n$
+    \item Ableitung von g hat maximalen Rang im Punkt $x_0$
+\end{itemize}
+Wenn $x_0$ lokales Extremum von f bzgl. der Nebenbedingung ist, gilt\\
+$\exists \lambda \in \mathbb{R}^s: \frac{d}{dx}(f(x)+\lambda^T g(x)) = 0$\\
+Das ist äquivalent zu \\
+$\nabla f(x) = \lambda \nabla g(x)$. Hieraus folgt insbesondere, dass die beiden Gradienten parallel sind!\\
+Sind mehrere Nebenbedingungen g gegeben gilt
+\begin{equation*}
+   \nabla f(x) = \sum_{k=1}^{n} \lambda_k \nabla g(x)
+\end{equation*}
+
+
+\newlinepar{Vorgehensweise: Extrema unter Nebenbedingungen bestimmen}
+%\todo[inline]{proofread, müsste wohl passen -jonas}
+\begin{enumerate}
+    \item Gradienten $\nabla f(x)$ und $\nabla g(x)$ bilden
+    \item $\nabla f(x) = \lambda \nabla g(x)$ aufstellen
+    \item Resultierendes Gleichungssystem für Komponentenfunktionen lösen, wenn nötig mit bekannten Verfahren für das Lösen von LGS (Gauß).
+    \item Prüfen, ob/welche Lösung Anfangsbedingungen erfüllt
+\end{enumerate}
+Achtung: Einfache \emph{Hesse-Matrix bringt keine Aussage} über die Art des Extremums unter Nebenbedingungen, sondern nur im allgemeinen Fall (ohne NB). (Geränderte Hesse-Matrix bringt Aussage, ist aber sehr aufwendig (meiner Meinung nach nicht machbar in Klausur))\\
+\noindent
+Bemerkung: Ist der zulässige Bereich kompakt und die Funktion stetig, \emph{nimmt sie Maximum und Minimum an}.\\
+\noindent
+Es kann aber die Hesse-Matrix der Lagrange-Funktion untersucht werden, bspw. $F(x,y,z)=f(x,y,z)-\lambda g(x,y,z)$. Diese muss dann wie gewohnt auf Definitheit geprüft werden.

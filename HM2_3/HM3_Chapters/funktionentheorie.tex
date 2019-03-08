@@ -1,0 +1,345 @@
+%\mathbb{set}$ for number sets
+
+
+\section{Wdh: Grundlagen}
+\subsubsection{Definition: Argument}
+Es ist $z\in\mathbb{C}\setminus\{0\}$. Jede Zahl $\phi\in\mathbb{R}$ mit $e^{i\phi}=\frac{z}{|z|}$ heißt \textit{Argument} von $z$ und wird mit $arg(z)$ bezeichnet. Das eindeutig bestimmte Argument auf dem Intervall $(-\pi,\pi]$ heißt \textit{Hauptwert des Arguments} und wird mit $Arg(z)$ bezeichnet. 
+
+\subsubsection{Zusammenfassung von Lemmata/Defs}
+\begin{enumerate}
+    \item Die Funktion $f: \mathbb{C}\setminus(-\infty,0]\to\mathbb{R} \; f(z)=Arg(z)$ ist stetig
+    \item Für jedes $z\in\mathbb{C}\setminus\{0\}$ hat die Gleichung $\omega^2=z$ genau zwei Lösungen $w=\pm\sqrt{|z|}e^{\frac{iArg(z)}{2}}$
+    \item $g:\mathbb{C}\setminus(-\infty,0]\to\mathbb{C} \; g(z)=\sqrt{|z|}e^{\frac{iArgs(z)}{2}}$ ist die Wurzelfunktion bzw. der Hauptwert der Wurzel
+    \item für $z\in\mathbb{C}\setminus(-\infty,0]$ heißt $Log(z)=log|z|+iArg(z)$ der Hauptwert des Logarithmus von $z$
+\end{enumerate}
+
+\section{Komplexe Differenziation}
+\label{sec:komplexe-differentiation}
+\subsection{Formale Definition}
+Es ist $M\subset\mathbb{C}$ offen und nicht leer und $f:M\to\mathbb{C}$ eine Funktion. $f$ heißt komplex diff'bar in $z_0\in M$, wenn der Grenzwert 
+\begin{equation*}
+    \frac{\diff}{\diff z}f(z_0) = \lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}
+\end{equation*}
+existiert. Ist $f$ in jedem Punkt von $M$ diff'bar heißt $f'$ die Ableitung von f.
+
+\paragraph{Bemerkungen}
+\begin{enumerate}
+    \item Rechenregeln für die Ableitungen aus dem reellen können auch im komplexen angewendet werden
+    \item $f:M\to\mathbb{C}$ ist genau dann diff'bar in $z_0$ wenn eine Darstellung der Form 
+            \begin{equation*}
+                f(z)=f(z_0)+c(z-z_0)+\phi(z,z_0)
+            \end{equation*}
+            existiert, mit einem $c\in\mathbb{C}$ und einem Restterm $\phi(z,z_0)$ der schneller als linear abfällt.
+    \item $\mathbb{C}$ kann durch Zuordnung von $z=x+iy\to \left(\begin{smallmatrix}x \\ y\end{smallmatrix}\right)$ als $\mathbb{R}^2$ angesehen werden        
+\end{enumerate}
+
+\subsubsection{Äquivalente Aussagen}
+Für eine Funktion $f:D\subset\mathbb{C}\to\mathbb{C}$ sind äquivalent
+\begin{enumerate}
+    \item $f$ ist in $z_0$ komplex diff'bar
+    \item $f$ ist in $z_0$ reell diff'bar und $f_{\bar{z}}(z_0)=0$
+    \item $f$ ist in $z_0=x_0+iy_0$ reell diff'bar und $u=\operatorname{Re}(f)$ und $v=\operatorname{Im}(f)$ erfüllen die CR-DGL
+    \begin{equation}
+        \tag{Cauchy Riemann DGL}
+        \label{eq:cr-dgl}
+        \begin{gathered}
+                \frac{\diff}{\diff x}u(x_0,y_0) = \frac{\diff}{\diff y}v(x_0,y_0)\\
+                \frac{\diff}{\diff y}u(x_0,y_0) = - \frac{\diff}{\diff x}v(x_0,y_0)
+        \end{gathered}
+    \end{equation}
+            
+\end{enumerate}
+
+\section{Holomorphie}
+\subsection{Definition: Holomorphie}
+Es ist $M\subset\mathbb{C}$ nicht leer und offen, $z_0\in M $ und $f:M\to\mathbb{C}$ eine Funktion
+\begin{enumerate}
+    \item $f$ heißt \textit{holomorph} oder \textit{analytisch} in $z_0$, wenn $f$ in einer Umgebung $U_{\varepsilon}(z_0)$ diff'bar (\ref{sec:komplexe-differentiation}, z.b. \eqref{eq:cr-dgl}) ist 
+    \item $f$ heißt \textit{holomorph} oder \textit{analytisch} auf $M$, wenn $f$ in jedem Punkt von $M$ holomorph ist
+\end{enumerate}
+
+\noindent Linearkombinationen, Produkte, Verkettungen und Quotienten von holomorphen Funktionen sind auf ihrem Definitionsgebiet auch holomorph.
+
+
+\subsection{Möbius-Transformation}
+Es ist durch $A=\left(\begin{smallmatrix}a & b \\ c & d \end{smallmatrix}\right)$ mit $a,b,c,d\in\mathbb{C}$ und $det(A)\neq 0$ eine Möbiustransformation gegeben. Die Trafo ist als folgende Abbildung definiert
+\begin{equation*}
+    \omega:\mathbb{C}_{\infty}\to\mathbb{C}_{\infty}\; \text{mit} \; \omega(z)=\frac{az+b}{cz+d}
+\end{equation*}
+Weiter ist definiert, dass $\omega(z)=\infty$ für $z=-\frac{d}{c}$ und $\omega(\infty)=\frac{a}{c}$.
+Möbius-Trafos sind bijektive Abbildungen von $\mathbb{C}_{\infty}$ auf sich selbst. Außerdem bildet die Menge der Möbius-Trafos bzgl. der Hintereinanderausführung eine Gruppe.
+
+\paragraph{Bemerkungen:}
+\begin{itemize}
+    \item für invertierbare Matrizen $A,B\in\mathbb{C}^{2x2}$ gilt $\omega_A \circ \omega_B=\omega_{AB}$ \\und $\omega_{A^{-1}} = \omega_A^{-1}$ 
+    \item Jede Möbius-Trafo lässt sich als Hintereinanderausführung von Drehstreckungen, Verschiebungen und einer Inversion schreiben
+    \item Jede Trafo hat zwei Fixpunkte, die auch zusammenfallen können (Ausnahme die Identität)
+\end{itemize}
+
+
+
+\subsubsection{Doppelverhältnis zur Berechnung der Möbius-Trafo}
+Es ist durch
+\begin{equation*}
+    \operatorname{DV}(z_1,z_2;z_3,z_4):=\frac{z_2-z_4}{z_2-z_3}\cdot\frac{z_1-z_3}{z_1-z_4}
+\end{equation*}
+,mit $(z_1,z_2,z_3,z_4)\subset\mathbb{C}$ das Doppelverhältnis definiert.\\
+Gilt $\{z_1,z_2,z_3,z_4\}\subset\mathbb{C}$ mit $|\{z_1,\dots,z_4\}|\geq 3$ und $\phi$ ist eine Möbiustrafo
+\begin{equation*}
+    \operatorname{DV}(\phi(z_1),\phi(z_2);\phi(z_3),\phi(z_4))=\operatorname{DV}(z_1,z_2;z_3,z_4)
+\end{equation*}
+Damit kann dann die Möbiustrafo berechent werden.
+\paragraph{Beispiel}
+Bestimmen einer Möbiustrafo für welche gilt $T(0)=-1$, $T(i)=-2+i$ und $T(-i)=-2-i$. Dann ist mit obiger Gleichung die Möbistrafo durch das Lösen der folgenden Gleichung zu bestimmen
+\begin{equation*}
+    \frac{T(z)+2-i}{T(z)+1}\cdot\frac{-2-i+1}{-2-i+2-i}=\frac{z-i}{z}\cdot\frac{-i}{-i-i}
+\end{equation*}
+
+\subsection{Ganze Funktionen}
+Eine auf ganz $\mathbb{C}$ holomorphe Funktion heißt auch \textit{ganze Funktion}. Ist die Funktion kein Polynom heißt die Funktion \textit{transzendente Funktion}.\\
+Der Satz von Liouville besagt: eine beschränkte ganze Funktion ist konstant.
+
+
+\section{Komplexe Integralrechnung}
+
+\subsection{Komplexes Kurvenintegral}
+Ist $M\subset\mathbb{C}$, $f:M\to\mathbb{C}$ eine stetige Funktion. $\gamma:[a.b]\to\mathbb{C}$ eine stückweise stetig diff'bare Parametrisierung der Kurve, dann ist
+\begin{equation*}
+    \int_{\gamma}f(z)\diff z = \int_a^b f(\gamma(t))\cdot \gamma'(t)\diff t
+\end{equation*}
+das komplexe Kurvenintegral von $f$ über die Kurve $\gamma$.
+
+\paragraph{Bemerkung}
+Da $\mathbb{C}$ auch als $\mathbb{R}^2$ angesehen werden kann, können komplexe Kurvenintegrale auch in reelle umgewandelt werden. Es ist $f(z)=u(z)+iv(z)$ mit $z(t)=x(t)+iy(t)$, dann erhält man
+\begin{equation*}
+    \int_{\gamma} f(z)\diff z = \int_{\gamma}(u \diff x - v\diff y) + i \int_{\gamma}(v\diff x + u\diff y)
+\end{equation*}
+zwei reelle Kurvenintegrale.
+
+\subsection{Nützliche Lemmata und Bemerkungen zu komplexen Kurvenintegralen}
+Es ist $M\subset\mathbb{C}$ und $f:M\to\mathbb{C}$ eine stetige Funktion und $\gamma$ die Parametrisierung einer stetig diff'baren Kurve
+\begin{itemize}
+    \item Ist $|f(z)|\leq c$ dann gilt $|\int_{\gamma}f(z)\diff z|\leq c\cdot L(\gamma)$
+    \item hat $f(z)$ eine Stammfunktion $F(z)$ so gilt $\int_\gamma f(z)\diff z = F(\gamma(b)) - F(\gamma(a))$, wobei $a,b$ gerade Anfangs- und Endpunkt der Parametrisierung sind
+\end{itemize}
+
+Es ist $G\subset\mathbb{C}$ ein Gebiet und $f:G\to\mathbb{C}$ eine stetige Funktion, dann sind die folenden Aussagen äquivalent
+\begin{itemize}
+    \item $f$ hat auf $G$ eine Stammfunktion
+    \item Für jede stückweise stetig diff'bare geschlossene Kurve mit Parametrisierung $\gamma$ gilt $\int_\gamma f(z)\diff z = 0$
+    \item $\int_\gamma f(z)\diff z$ ist wegunabhängig
+\end{itemize}
+
+
+\subsection{Cauchyscher Integralsatz}
+\newlinepar{Voraussetzungen} 
+$G \in \mathbb{C}$ sternförmiges Gebiet, $p \in G$, $f: G \rightarrow \mathbb{C}$ auf $G$ stetig und auf $G \setminus \{p\}$ holomorph.
+
+\paragraph{Aussagen}
+\begin{itemize}
+    \item $f$ besitzt auf $G$ eine Stammfunktion.
+    \item Integral über stückweise stetig diffbare geschlossene Kurve $=0$:
+\end{itemize}
+
+\begin{equation}
+    \int_\gamma f(z) \diff z = 0
+\end{equation}
+
+\newlinepar{Beispiel}
+%\todo[inline]{Beispiel zu Cauchy Integralsatz}
+
+
+%\todo[inline]{Bemerkungen aus \glqq Ausflug Homotopie 6.1.6\grqq erwähnen?}
+
+\subsection{Cauchysche Integralformel}
+\label{Cauchy_if}
+\newlinepar{Voraussetzungen}
+$G \in \mathbb{C}$ sternförmiges Gebiet, $f: G \rightarrow \mathbb{C}$ auf $G$ holomorph.\\
+$\gamma$ stückweise stetig diffbare geschlossene Kurve in $G$.\\
+$z_0 \in G$ liegt nicht auf $\gamma$.
+
+\paragraph{Aussagen}
+\begin{equation}
+    f(z_0) N_\gamma(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z-z_0}\diff z
+\end{equation}
+
+
+\newlinepar{Beispiel}
+%\todo[inline]{Beispiel zu Cauchy Integralformel}
+\begin{equation*}
+    \int_{|z-3i|=2}\frac{1}{z^2+9}\diff z =  \int_{|z-3i|=2} \frac{\frac{1}{z+3i}}{z-3i}=2\pi i \frac{1}{3i+3i}=\frac{\pi}{3}
+\end{equation*}
+Es muss darauf geachtet werden, dass evlt. weitere Problemstellen außerhalb liegen.
+
+%\todo[inline]{einfügen von 6.1.18}
+
+\section{Singularitäten}
+
+\subsection{Definition}
+Es sei $f:\dot{U}_r(z_0) \to \mathbb{C}$ holomorph mit $r>0$ und $z_0\in \mathbb{C}$, dann besitzt $f$ in $z_0$ eine isolierte Singularität.
+
+\subsection{Klassifizerung}
+\subsubsection{Klassen von Singularitäten}
+Eine Singularität heißt,
+\begin{itemize}
+    \item \textit{hebbar}, wenn $f$ in einer punktierten Umgebung von $z_0$ beschränkt ist
+    \item \textit{Polstelle}, wenn $lim_{z\to z_0}|f(z)|=+\infty$
+    \item \textit{wesentliche Singularität}, wenn weder hebbar noch Pol in $z_0$
+\end{itemize}
+
+\subsubsection{Riemann'scher Hebbarkeitssatz}
+Es ist $G\subset\mathbb{C}$ ein Gebiet und $f\in H(G)$, $z_0$ ist eine isolierte Singularität von $f$. Es handelt sich genau dann um eine hebbare Singularität, wenn eine in $z_0$ holomorphe Funktion $g$ existiert, so dass $f(z) = g(z)$ für alle $z\in \dot{U}_r(z_0)$ mit $r>0$.
+
+\subsection{Laurent-Reihen}
+\subsubsection{Definition: Laurent-Reihe}
+$f$ ist eine auf dem Kreisring  $G=\{z\in\mathbb{C} | R_1 < |z-z_0| < R_2\}$ holomorphe Funktion, dann hat $f$ eine Darstellung als Laurent-Reihe der Form
+\begin{equation*}
+    f(z)=\sum_{k=-\infty}^{+\infty}a_k(z-z_0)^k
+\end{equation*}
+wenn man mit dem inneren Radius $R_1$ des Kreisrings gegen null geht und $R=R_2$ setzt, erhält man gerade den Fall einer punktierten Umgebung $\dot{U}_R(z_0)$.\\
+Die Koeffizienten können theoretisch folgendermaßen berechnet werden
+\begin{equation*}
+    a_k=\frac{1}{2\pi i }\int_{|z-z_0|=r}\frac{f(z)}{(z-z_0)^{k+1}}\diff z
+\end{equation*}
+Die Reihe konvergiert auf dem Kreisring \textit{absolut} gegen f und auf jeder kompakte Teilmenge \textit{gleichmäßig}. Die Darstellung ist eindeutig.
+
+\paragraph{Bemerkung:}
+\begin{itemize}
+    \item $\sum_{k=-\infty}^{-1}a_k(z-z_0)^k$ heißt \textit{Hauptteil} der Laurent-Reihe
+    \item $\sum_{k=0}^{+\infty}a_k(z-z_0)^k$ heißt \textit{Nebenteil} der Laurent-Reihe
+\end{itemize}
+
+\subsubsection{Klassifizierung von isolierten Singularitäten anhand des Hauptteils}
+\begin{itemize}
+    \item $z_0$ ist genau dann eine hebbare Singularität, wenn $a_k=0$ für alle $k\in\mathbb{Z}\setminus\mathbb{N}_0$ (kein Hauptteil)
+    \item $z_0$ ist genau dann eine Polstelle der Ordnung n, wenn $a_{-n}\neq 0 $ und $a_k=0$ für alle für alle $k\in\mathbb{Z}$ mit $k<-n$, d.h. heißt der Hauptteil hat eine endliche Anzahl an Gliedern
+    \item $z_0$ ist eine wesentliche Singularität, wenn der Hauptteil unendliche viele Glieder hat
+\end{itemize}
+
+\section{Residuensatz}
+\subsection{Residuen}
+Mit dem Residuensatz können Kurvenintegrale über geschlossene Kurven gelöst werden. Falls $G$ ein homotop einfaches zusammenhängendes Gebiet ist und $f$, eine Funkton, auf diesem Gebiet holomorph.
+
+\subsubsection{Definition: Residuum}
+Es ist $G$ wie oben und $f$ eine auf $G\setminus\{z_1,\dots,z_m\}$ holomorphe Funktion. Dann ist das Residuum von $f$ im Punkt $z_0$ als
+\begin{equation*}
+    Res_{z_o}(f)= \frac{1}{2\pi i}\int_{|z-z_0|=r}f(z)\diff z    
+\end{equation*}
+definiert. Wobei die Umgebung so gewählt wurde, dass sie nur eine Singularität enthält.\\
+\noindent Direkte Folgerungen davon sind
+\begin{itemize}
+    \item ist $f$ holomorph in $z_0$, so ist $Res_{z_0}(f)=0$
+    \item ist $f(z)=\sum_{k=-\infty}^{+\infty}a_k (z-z_0)^k$ eine Laurent-Reihendarstellung von $f$, dann ist $Res_{z_0}(f) = a_{-1}$
+\end{itemize}
+
+\subsubsection{Bestimmung von Residuen an Polstellen}
+Besitzt $f(z)$ in $z_0$ einen Pol der Ordnung $n$, dann folgt aus der Cauchyschen Integralformel
+\begin{equation*}
+    \res_{z_0}(f)=\frac{1}{(n-1)!}\left.\left(\left(z-z_0\right)^nf(z)\right)^{(n-1)}\right|_{z=z_0}
+\end{equation*}
+
+\subsection{Residuensatz}
+Es ist $G\subset \mathbb{C}$ ein homotop einfach zusammenhängendes Gebiet. Eine Funktion $f$, die auf $G\setminus\{z_1,\dots,z_m\}$ holomorph ist. Dann gilt für jede stückweise stetig diff'bare Kurve $\gamma$ in $G\setminus\{z_1,\dots,z_m\}$ gilt
+
+\begin{equation*}
+    \int_{\gamma}f(z)\diff z = 2\pi i \sum_{k=1}^{m}Res_{z_k}(f) \cdot N_{\gamma}(z_k)
+\end{equation*}
+
+Die Aussage bleibt wahr für beliebig viele isolierte Singularitäten, solange eventuelle Häufungspunkte auf dem Rand von $G$ liegen.\\
+\noindent Residuensatz ist eine verallgemeinerung der Cauchy-Integralformel (\ref{Cauchy_if}).
+
+
+\subsubsection{Bestimmen von Residuen}
+\begin{itemize}
+    \item Residuum ist linear
+    \item $f$ hat in $z_0$ einen Pol \textit{erster Ordnung}, dann kann das Residuum über $Res_{z_0}(f) = \lim_{z \to z_0}(z-z_0)f(z)$ bestimmt werden 
+    \item $f$ hat in $z_0$ einen Pol \textit{erster Ordnung} und $g$ ist holomorph, dann kann das Residuum über $Res_{z_0}(f\cdot g) = g(z_0)\cdot Res_{z_0}(f)$ bestimmt werden
+    \item $f$ hat in $z_0$ einen Pol \textit{n-ter Ordnung}, dann kann das Residuum über $Res_{z_0}(f) = \frac{1}{(n-1)!}\frac{\diff^{n-1}}{\diff z^{n-1}}[(z-z_0)^nf(z)]$ ausgewertet an $z=z_0$, bestimmt werden
+    \item $f,g \in H(U_R(z_0))$ mit $f(z_0)\neq 0$, $g(z_0)=0$ und $g'(z_0)\neq 0$, dann hat $\frac{f}{g}$ in $z_0$ einen Pol erster Ordnung und es gilt $Res_{z_0}(\frac{f}{g})=\frac{f(z_0)}{g'(z_0)}$
+\end{itemize}
+
+\subsubsection{Bestimmen reeller Integrale mit dem Residuensatz}
+Es ist $G$ ein homotop einfach zusammenhängendes Gebiet. $f$, eine Funktion, ist auf $G\setminus\{z_1,\dots,z_m\}$ holomorph. $\{z_1,\dots,z_m\}$ sind verschiedene Punkte der offenen oberen komplexen Halbebene: $H = \{z\in \mathbb{C} | Im(z) > 0\}$ und $H \subset G$.\\
+Außerdem gelte für jede Folge $(\omega)_{n \in \mathbb{N}} \subset H$ mit $\lim_{n \to \infty}|\omega_n|=+\infty$, dass $\lim_{n \to \infty}f(\omega_n)\omega_n=0$. Dann konvergiert das Integral, so dass gilt
+\begin{equation*}
+    \int_{-\infty}^{+\infty}f(x)\diff x = 2\pi i \sum_{k=1}^m Res_{z_k}(f)
+\end{equation*}
+
+Es ist zu beachten, dass das Integral auch tatsächlich konvergiert.\\
+\noindent Auf Blatt 14 wird außerdem noch das Jordan'sche Lemma gezeigt, welches besagt dass für $H$ und $f$ wie oben, mit der Abschwächung, dass $zf(z)$ beschränkt sein muss, gilt (für $\omega>0$)
+\begin{equation*}
+    \int_{-\infty}^{+\infty} e^{iwx}f(x)\diff x = 2\pi i\sum_{k=1}^m Res_{z_k}(e^{iwz}f(z))
+\end{equation*}
+
+\paragraph{Bemerkung}
+Es wurde außerdem gezeigt, dass dies insbesondere für eine rationale Funktion, mit größerem Nenner- als Zählergrad gilt.\\
+\noindent Es ist zu beachten, dass sich die Aussage für $w<0$ umdreht, so dass Punkte in der unteren komplexen Halbebene betrachtet werden. Je nach Kurve ist dann auch die Richtung, in welcher die Parametrisierung durchlaufen wird relevant und muss unter Umständen geändert werden.\\
+Bspw. (A42 (d)) $cos(\omega x) = \frac{e^{i\omega x} + e^{-i\omega x}}{2}$ muss der eine Teile für die obere und der andere für die untere Halbebene betrachtet werden um das gesuchte Ergebnis zu erhalten. (alternativ mit $cos(\omega x) = \operatorname{Re}(e^{i\omega x})$)
+
+\subsubsection{Bestimmen von Reihen mit Hilfe des Residuensatzes}
+
+%\todo[inline]{Bitte prüfen}
+
+Es wird für eine konvergente Reihe $\sum_{k=1}^{+\infty}f(k)$ ein Ergebnis gesucht. Man wählt eine passende Funktion oft $g(z)=\pi cot(\pi z)$, da diese Polstellen bei $z\in \mathbb{Z}$ hat. Nach dem Residuensatz gilt dann für das Kurvenintegral
+\begin{equation*}
+    \oint_{\gamma}f(z)\pi cot(\pi z)\diff z = 2\pi i \sum_{k=1}^m Res_{z_k}(f(z)\pi cot(\pi z))
+\end{equation*}
+Da Residuen aber linear sind, können diese in Residuen von $f$ und Residuen von $g$ unterteilt werden
+
+\begin{equation*}
+    \oint_{\gamma}f(z)\pi cot(\pi z)\diff z = 2\pi i(\sum Res_f(f\cdot g) + \sum Res_g(f\cdot g))
+\end{equation*}
+
+Es wird nun gezeigt, dass durch ausweiten der Kurve (bspw. bei Kreis $R\to \infty$) das Integral auf der linken Seite gegen 0 geht, dann folgt
+\begin{equation*}
+    \sum Res_g(f\cdot g) = - \sum Res_f(f\cdot g)
+\end{equation*}
+
+da durch ausweiten der Kurve gegen unendlich nun die gesamte reelle Achse enthalten ist und der cotangens jeweils bei ganzzahligen Werten Singularitäten besitzt folgt
+
+\begin{equation*}
+    \sum_{k=-\infty}^{\infty}f(k) = - \sum Res_f(f\cdot g)
+\end{equation*}
+
+Durch Bestimmen der Residuen von $f$ und umstellen, kann das Ergebnis der Reihe bestimmt werden.
+
+\subsubsection{Anwendung des Residuensatz auf Trig. Fkt.}
+Es sind P und Q Polynome in zwei Veränderlichen, mit $Q(x,y)\neq 0$ für alle $x,y\in\mathbb{R}$ mit $x^2+y^2=1$. Es wird die Funktion $f$ definiert als 
+\begin{equation*}
+    f(z)=\frac{1}{zi}\frac{P(\frac{1}{2}(z+\frac{1}{z}),\frac{1}{2i}(z-\frac{1}{z}))}{Q(\frac{1}{2}(z+\frac{1}{z}),\frac{1}{2i}(z-\frac{1}{z}))}
+\end{equation*}
+
+dann gilt
+\begin{equation*}
+    \int_{0}^{2\pi} \frac{P(\cos{t},\sin{t})}{Q(\cos{t},\sin{t})}\diff t = 2\pi i\sum_{|a|<1}\operatorname{Res}_a(f)
+\end{equation*}
+
+Es wird also die Summe der Residuen aller Singularitäten von f gebildet, die innerhalb des Einheitskreises liegen.
+
+\paragraph{Beispiel}
+Mit der oben beschriebenen Methode können also Integrale, welche trig. Fkt. enthalten, auf die Summe der Residuen einer rationalen Fkt. reduziert werden.\\
+Es ist das Integral 
+\begin{equation*}
+    \int_0^\pi \frac{\cos{t}^2}{1+i\sin{t}\cos{t}} \diff t
+\end{equation*}
+
+\noindent gegeben. Man erhält dann also für die oben definierte Funktion $f$
+\begin{equation*}
+    f(z)=\frac{1}{iz}\frac{\frac{1}{4}(z+\frac{1}{z})^2}{1+\frac{1}{4}(z-\frac{1}{z})(z+\frac{1}{z})}
+    =\frac{1}{iz}\frac{z^4+2z^2+1}{z^4+4^2-1}
+\end{equation*}
+
+$f$ hat Singularitäten in $z=0$ und $z=\pm \sqrt{-2\pm \sqrt{5}}$. Es werden nun die Residuen der Singularitäten berechent, welche innerhalb des Einheitskreises liegen.
+
+
+\begin{align*}
+    \operatorname{Res}_0(f)&=-i\frac{z^4+2z^2+1}{5z^4+12z^2-1}\big|_{z=0}=i\\
+    \operatorname{Res}_{\pm \sqrt{-2+\sqrt{5}}}(f)&=-i\frac{z^4+2z^2+1}{5z^4+12z^2-1}\big|_{z=\pm \sqrt{-2+\sqrt{5}}}=-i\frac{3-\sqrt{5}}{10-4\sqrt{5}}
+\end{align*}
+
+
+Damit erhält man durch nutzen der Symmetrieeigenschaften der Funktion
+
+\begin{align*}
+    \int_0^\pi\frac{\cos{t}^2}{1+i\cos{t}\sin{t}}\diff t = 2\pi i\frac{i}{2}(1-\frac{3-\sqrt{5}}{5-2\sqrt{5}})=\frac{\pi}{\sqrt{5}}
+\end{align*}

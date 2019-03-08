@@ -1,0 +1,149 @@
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{esvect}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{todonotes}
+\usepackage{pgfplots}
+\usepackage{verbatim}
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\usepackage{mathtools}
+\usepackage{centernot}
+
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = gray
+}
+
+%https://www.google.com/search?q=latex+math+symbols&oq=latex+math+&aqs=chrome.0.69i59j69i57j69i61j69i60l2j35i39.2187j0j7&sourceid=chrome&ie=UTF-8
+
+%||norm||
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%Skalarprodukt <.,.>
+\newcommand{\dotProduct}[2]{\langle#1,#2\rangle}
+
+%\emph -> fettgedruckt
+\let\emph\relax
+\DeclareTextFontCommand{\emph}{\bfseries}
+
+% Paragraph, wobei der Text in neuer Zeile ohne indent beginnt
+\newcommand{\newlinepar}[1]{\paragraph{#1}\mbox{}\\\noindent}
+
+%\emph -> fettgedruckt
+\let\emph\relax
+\DeclareTextFontCommand{\emph}{\bfseries}
+
+% d in integralen
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+
+% Residue
+\newcommand{\res}{\text{Res}}
+
+% f im Text
+\newcommand{\f}{$f$ }
+
+
+
+% Spaltenvektor der Länge n
+% geklaut von https://tex.stackexchange.com/questions/2705/typesetting-column-vector
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+
+% Ableitung eines Vektors
+\def\vecderiv#1{\vec#1\,'}
+
+% Small vectors (inline) https://tex.stackexchange.com/a/200511/143051
+\newcommand{\smallcolvec}[1]{% inline column vector
+  \left(\begin{smallmatrix}#1\end{smallmatrix}\right)%
+}
+\newcommand{\smallrowvec}[1]{% inline row vector
+  \begin{smallmatrix}(#1)\end{smallmatrix}%
+}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+    \vfill
+    \includegraphics[width=13cm]{UniUlmLogo.PNG} % also works with logo.pdf
+    \vfill
+    \vfill
+    {\bfseries\Large
+        Zusammenfassung Höhere Mathematik für Physiker \& Ingenieure 2/3\\
+        WS18/19\\
+    }    
+    \vskip2cm
+        Jonas Otto\\ \href{mailto:edwin.otto@uni-ulm.de}{edwin.otto@uni-ulm.de}\\
+        Luca Krüger\\ \href{luca.krueger@uni-ulm.de}{luca.krueger@uni-ulm.de}\\
+        Marco Deuscher\\ \href{marco.deuscher@uni-ulm.de}{marco.deuscher@uni-ulm.de}\\
+        Simon Wilhelmstätter\\ \href{simon.wilhelmstaetter@uni-ulm.de}{simon.wilhelmstaetter@uni-ulm.de}\\
+        \vfill
+     März 2019
+    \vfill
+    \vfill
+    \vfill
+\end{titlepage}
+
+\clearpage
+
+%\maketitle
+
+%\listoftodos
+%\newpage
+
+\tableofcontents
+\newpage
+
+\section*{Disclaimer}
+Mit dem Bearbeiten dieses Dokuments verpflichtet sich der Autor, allen oben aufgeführten anderen Autoren ein (1) Bier auszugeben, falls die hinzugefügten Informationen offensichtlich falsch sind, richtiges oder relevantes entfernt oder das Dokument in anderer Weise negativ/destruktiv beeinflusst wurde.
+
+
+\begin{comment}
+
+\section*{Notizen/Anmerkungen}
+\paragraph{Bemerkungen von Liebezeit in letzter Vorlesung}
+\begin{enumerate}
+    \item Aufgabe 42 (Jordansches Lemma anschauen)
+    \item Eine Aufgabe hat wahrscheinlich eine nicht endliche Anzahl an Singularitäten(Häufungspunkt). Residuensatz kann an dieser Stelle nicht angewendet werden. Es sollte aber möglich sein das Integral mittels passender Integrationswege zu bestimmen. (Halbkreise)
+\end{enumerate}
+
+\end{comment}
+
+
+\chapter{Lineare Algebra}
+\input{HM2_Chapters/hauptachsentransformation.tex}
+
+\chapter{Funktionen mehrerer Veränderlicher}
+\input{HM2_Chapters/mehrereveraenderliche.tex}
+
+\chapter{Das Riemannsche Integral}
+\input{HM2_Chapters/riemannintegral.tex}
+
+\chapter{Gewöhnliche Differentialgleichungen}
+\input{HM3_Chapters/gewoehnlicheDGL.tex}
+
+\chapter{Funktionentheorie}
+\input{HM3_Chapters/funktionentheorie.tex}
+
+\end{document}
